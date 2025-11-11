@@ -76,6 +76,67 @@ body {
     box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
 }
 
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: #4a90e2;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.phone-float {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.5);
+    z-index: 999;
+    transition: all 0.3s ease;
+    animation: pulse-phone 2s infinite;
+}
+
+.phone-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.7);
+}
+
+@keyframes pulse-phone {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(74, 144, 226, 0.5);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(74, 144, 226, 0.8);
+    }
+}
+
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
@@ -780,7 +841,37 @@ body {
 }
 
 @media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
     .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        background-color: #fff;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        padding: 15px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-cta {
         display: none;
     }
 
@@ -852,13 +943,22 @@ body {
         font-size: 1.6rem;
     }
 
+    .phone-float,
     .whatsapp-float {
         width: 50px;
         height: 50px;
         bottom: 20px;
+    }
+
+    .phone-float {
+        left: 20px;
+    }
+
+    .whatsapp-float {
         right: 20px;
     }
 
+    .phone-float svg,
     .whatsapp-float svg {
         width: 28px;
         height: 28px;
