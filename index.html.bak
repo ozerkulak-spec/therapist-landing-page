@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="İstanbul'da profesyonel psikolojik destek ve terapi hizmetleri. Bireysel ve çift terapisi, online görüşme seçenekleri.">
+    <title>Profesyonel Psikolojik Destek | Klinik Psikolog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">Psk. Dr. Sarah Mitchell</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#about">Hakkımda</a></li>
+                <li><a href="#services">Hizmetler</a></li>
+                <li><a href="#testimonials">Danışan Görüşleri</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+            <a href="https://wa.me/905551234567" class="nav-cta">Randevu Al</a>
+        </div>
+    </nav>
+
+    <a href="https://wa.me/905551234567" class="whatsapp-float" target="_blank">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M16 0C7.164 0 0 7.164 0 16C0 18.777 0.722 21.407 2.076 23.696L0.64 30.4L7.568 28.992C9.764 30.232 12.292 30.933 15 30.933C23.836 30.933 31 23.769 31 15C31 6.231 23.836 0 16 0ZM16 28.267C13.573 28.267 11.271 27.605 9.28 26.413L8.84 26.147L3.84 27.36L5.08 22.52L4.787 22.053C3.48 19.987 2.773 17.573 2.773 15C2.773 8.693 8.693 3.773 16 3.773C23.307 3.773 29.227 8.693 29.227 15C29.227 21.307 23.307 28.267 16 28.267ZM23.24 19.053C22.88 18.867 21.147 18.013 20.813 17.88C20.48 17.747 20.24 17.68 20 18.04C19.76 18.4 19.093 19.2 18.88 19.44C18.667 19.68 18.453 19.707 18.093 19.52C17.733 19.333 16.56 18.947 15.173 17.733C14.093 16.787 13.347 15.613 13.133 15.253C12.92 14.893 13.107 14.693 13.293 14.507C13.467 14.333 13.68 14.053 13.867 13.84C14.053 13.627 14.12 13.467 14.253 13.227C14.387 12.987 14.32 12.773 14.227 12.587C14.133 12.4 13.387 10.667 13.08 9.947C12.787 9.253 12.48 9.347 12.267 9.333H11.6C11.36 9.333 10.987 9.427 10.653 9.787C10.32 10.147 9.413 11 9.413 12.733C9.413 14.467 10.68 16.147 10.867 16.387C11.053 16.627 13.347 20.24 16.853 21.76C17.653 22.107 18.28 22.307 18.773 22.453C19.573 22.707 20.307 22.667 20.88 22.573C21.52 22.467 22.947 21.787 23.253 21.04C23.56 20.293 23.56 19.667 23.467 19.52C23.373 19.373 23.133 19.28 22.773 19.093L23.24 19.053Z" fill="white"/>
+        </svg>
+    </a>
+
+    <header class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Psikolojik Desteğe İhtiyacınız mı Var?</h1>
+                    <p class="hero-subtitle">Hayatınızı daha sağlıklı ve mutlu yaşamak için profesyonel psikolojik destek alın. Bireysel ve çift terapisi ile yanınızdayım.</p>
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="#4a90e2"/>
+                            </svg>
+                            <span>24 Saat İçinde İlk Görüşme</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="#4a90e2"/>
+                            </svg>
+                            <span>Online ve Yüz Yüze Seçenekler</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="#4a90e2"/>
+                            </svg>
+                            <span>Tam Gizlilik Garantisi</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="cta-button primary">Hemen Randevu Al</a>
+                        <a href="https://wa.me/905551234567" class="cta-button secondary">WhatsApp ile İletişim</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/img/hero-image.jpg" alt="Profesyonel Psikolojik Destek">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/img/profile.jpg" alt="Klinik Psikolog Dr. Sarah Mitchell">
+                    <div class="experience-badge">
+                        <span class="badge-number">15+</span>
+                        <span class="badge-text">Yıl Deneyim</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">Merhaba, Ben Dr. Sarah Mitchell</h2>
+                    <p class="about-intro">Klinik psikolog olarak bireylerin, çiftlerin ve ailelerin psikolojik sağlıklarını güçlendirmelerine yardımcı oluyorum.</p>
+                    <p>15 yılı aşkın deneyimimle, danışanlarımın yaşam kalitelerini artırmak, ilişkilerini güçlendirmek ve kişisel gelişimlerini desteklemek için çalışıyorum. Stanford Üniversitesi'nden Klinik Psikoloji doktorası derecesine sahibim.</p>
+                    <p>Bilişsel davranışçı terapi (CBT), EMDR, çift ve aile danışmanlığı gibi kanıta dayalı yöntemlerle çalışıyorum. Her bireyin benzersiz olduğuna inanıyor ve danışmanlık sürecinde kişiye özel yaklaşımlar geliştiriyorum.</p>
+                    <div class="about-credentials">
+                        <div class="credential-item">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <path d="M24 4L6 14V22C6 32.4 13.6 42.08 24 44C34.4 42.08 42 32.4 42 22V14L24 4ZM20 32L12 24L14.82 21.18L20 26.34L33.18 13.16L36 16L20 32Z" fill="#4a90e2"/>
+                            </svg>
+                            <p><strong>Doktora</strong><br>Stanford Üniversitesi<br>Klinik Psikoloji</p>
+                        </div>
+                        <div class="credential-item">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <path d="M38 6H10C7.8 6 6 7.8 6 10V38C6 40.2 7.8 42 10 42H38C40.2 42 42 40.2 42 38V10C42 7.8 40.2 6 38 6ZM20 34H14V20H20V34ZM28 34H22V14H28V34ZM36 34H30V26H36V34Z" fill="#6ac6b5"/>
+                            </svg>
+                            <p><strong>Sertifikalar</strong><br>CBT, EMDR<br>Çift Terapisi</p>
+                        </div>
+                        <div class="credential-item">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM24 12C27.32 12 30 14.68 30 18C30 21.32 27.32 24 24 24C20.68 24 18 21.32 18 18C18 14.68 20.68 12 24 12ZM24 38.4C18.8 38.4 14.28 35.54 12 31.28C12.06 26.92 20.4 24.5 24 24.5C27.58 24.5 35.94 26.92 36 31.28C33.72 35.54 29.2 38.4 24 38.4Z" fill="#4a90e2"/>
+                            </svg>
+                            <p><strong>Uzmanlık</strong><br>Bireysel Terapi<br>İlişki Danışmanlığı</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">Sunduğum Hizmetler</h2>
+            <p class="section-subtitle">Size en uygun terapi yöntemini birlikte belirleyerek, kişiselleştirilmiş psikolojik destek sunuyorum.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM24 12C27.32 12 30 14.68 30 18C30 21.32 27.32 24 24 24C20.68 24 18 21.32 18 18C18 14.68 20.68 12 24 12ZM24 38.4C18.8 38.4 14.28 35.54 12 31.28C12.06 26.92 20.4 24.5 24 24.5C27.58 24.5 35.94 26.92 36 31.28C33.72 35.54 29.2 38.4 24 38.4Z" fill="#4a90e2"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">One-on-One Therapy</h3>
+                    <p class="service-description">Personalized sessions tailored to your unique needs, focusing on anxiety, depression, trauma, and personal development in a safe, confidential environment.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32.34 16.66C30.42 14.74 27.84 13.6 25 13.6C22.16 13.6 19.58 14.74 17.66 16.66C15.74 18.58 14.6 21.16 14.6 24H10C10 19.96 11.6 16.24 14.34 13.5C17.08 10.76 20.8 9.16 24.84 9.16C28.88 9.16 32.6 10.76 35.34 13.5C38.08 16.24 39.68 19.96 39.68 24H35.08C35.08 21.16 33.94 18.58 32.34 16.66ZM24 28.84C21.16 28.84 18.58 29.98 16.66 31.9C14.74 33.82 13.6 36.4 13.6 39.24H9C9 35.2 10.6 31.48 13.34 28.74C16.08 26 19.8 24.4 23.84 24.4C27.88 24.4 31.6 26 34.34 28.74C37.08 31.48 38.68 35.2 38.68 39.24H34.08C34.08 36.4 32.94 33.82 31.02 31.9C29.1 29.98 26.52 28.84 23.68 28.84H24Z" fill="#4a90e2"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Couples Therapy</h3>
+                    <p class="service-description">Strengthen your relationship through improved communication, conflict resolution, and deeper emotional connection with evidence-based couples counseling.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M42 4H6C3.8 4 2 5.8 2 8V32C2 34.2 3.8 36 6 36H36L44 44V8C44 5.8 42.2 4 42 4ZM38 28H10V24H38V28ZM38 22H10V18H38V22ZM38 16H10V12H38V16Z" fill="#4a90e2"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Online Sessions</h3>
+                    <p class="service-description">Access professional therapy from the comfort of your home through secure video conferencing, offering flexibility and convenience without compromising care quality.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 2C13 2 4 11 4 22C4 33 13 42 24 42C35 42 44 33 44 22C44 11 35 2 24 2ZM24 38C15.2 38 8 30.8 8 22C8 13.2 15.2 6 24 6C32.8 6 40 13.2 40 22C40 30.8 32.8 38 24 38ZM34 20L30 16L24 22L18 16L14 20L20 26L14 32L18 36L24 30L30 36L34 32L28 26L34 20Z" fill="#4a90e2"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Stress Management</h3>
+                    <p class="service-description">Learn practical techniques to manage stress, build resilience, and maintain work-life balance through mindfulness and cognitive strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Dr. Mitchell helped me overcome years of anxiety and self-doubt. Her compassionate approach and practical strategies transformed my life. I finally feel like myself again."</p>
+                    <p class="testimonial-author">— Jennifer L.</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Working with Dr. Mitchell saved our marriage. She gave us the tools to communicate effectively and reconnect on a deeper level. We're so grateful for her guidance."</p>
+                    <p class="testimonial-author">— Michael & Rebecca T.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell me how I can help you"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+                <div class="contact-info">
+                    <h3 class="contact-info-title">Contact Information</h3>
+                    <div class="contact-item">
+                        <strong>Phone:</strong>
+                        <p>(555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <p>dr.mitchell@example.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Office Hours:</strong>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p>Saturday: 10:00 AM - 2:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Dr. Sarah Mitchell. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
