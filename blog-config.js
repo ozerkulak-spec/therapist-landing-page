@@ -162,6 +162,13 @@ const BLOG_CATEGORIES = [
         slug: "stress-management",
         icon: "🧘"
     }
+    // 💡 YENİ KATEGORİ EKLEMEK İÇİN:
+    // Buraya virgül koy ve yeni kategori ekle:
+    // {
+    //     name: "Parenting",
+    //     slug: "parenting",
+    //     icon: "👨‍👩‍👧"
+    // }
 ];
 
 // ═══════════════════════════════════════════════════════════════════

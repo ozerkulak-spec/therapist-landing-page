@@ -240,6 +240,72 @@ Open `blog-config.js` - this is your blog management center!
 
 ---
 
+### 4.5 📁 Add or Remove Blog Categories (20 seconds!)
+
+Categories are the filter buttons at the top of your blog page (🧠 Mental Health, 💑 Relationships, etc.)
+
+**To Add a New Category:**
+
+1. Open `blog-config.js`
+2. Find `BLOG_CATEGORIES` array
+3. Copy this template:
+
+```javascript
+{
+    name: "Parenting",        // Display name
+    slug: "parenting",         // URL-friendly version (lowercase, no spaces)
+    icon: "👨‍👩‍👧"              // Emoji icon
+}
+```
+
+4. Add comma after last category
+5. Paste your new category
+6. Save!
+
+**Example - Adding "Anxiety" Category:**
+
+```javascript
+const BLOG_CATEGORIES = [
+    { name: "All Posts", slug: "all", icon: "📚" },
+    { name: "Mental Health", slug: "mental-health", icon: "🧠" },
+    { name: "Relationships", slug: "relationships", icon: "💑" },
+    { name: "Personal Growth", slug: "personal-growth", icon: "🌱" },
+    { name: "Stress Management", slug: "stress-management", icon: "🧘" },
+    { name: "Anxiety", slug: "anxiety", icon: "😰" }  // 👈 NEW!
+];
+```
+
+**Popular Category Ideas:**
+- 😰 Anxiety
+- 😢 Depression  
+- 👨‍👩‍👧 Parenting
+- 💔 Trauma & PTSD
+- 💼 Work-Life Balance
+- 🧒 Child Therapy
+- 👵 Elder Care
+- 💪 Resilience
+- 😊 Happiness
+- 🎯 Goal Setting
+
+**To Remove a Category:**
+
+Just delete that entire line from the array!
+
+**⚠️ Important:** When you add a blog post, its `category` field must match a category name exactly:
+
+```javascript
+// In BLOG_CATEGORIES:
+{ name: "Anxiety", slug: "anxiety", icon: "😰" }
+
+// In your blog post:
+{
+    category: "Anxiety",  // 👈 Must match exactly!
+    // ... rest of post
+}
+```
+
+---
+
 ### 5. ⚙️ Show/Hide Sections (10 seconds!)
 
 At the bottom of `site-config.js`, find `settings:`:

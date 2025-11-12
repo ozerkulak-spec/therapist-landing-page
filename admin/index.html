@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Therapist Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Main Container -->
+    <div class="dashboard-container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🎨 Admin Dashboard</h1>
+                <p>Therapist Website Manager</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-section="theme">
+                    <span class="nav-icon">🎨</span>
+                    <span>Theme & Colors</span>
+                </button>
+                
+                <button class="nav-item" data-section="content">
+                    <span class="nav-icon">📝</span>
+                    <span>Content</span>
+                </button>
+                
+                <button class="nav-item" data-section="blog">
+                    <span class="nav-icon">📰</span>
+                    <span>Blog Management</span>
+                </button>
+                
+                <button class="nav-item" data-section="images">
+                    <span class="nav-icon">🖼️</span>
+                    <span>Images</span>
+                </button>
+                
+                <button class="nav-item" data-section="seo">
+                    <span class="nav-icon">🔧</span>
+                    <span>SEO & Analytics</span>
+                </button>
+                
+                <button class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </button>
+                
+                <button class="nav-item" data-section="export">
+                    <span class="nav-icon">💾</span>
+                    <span>Export/Import</span>
+                </button>
+                
+                <button class="nav-item" data-section="preview">
+                    <span class="nav-icon">🔍</span>
+                    <span>Preview</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="btn-primary btn-block" id="generateConfig">
+                    💾 Generate Config Files
+                </button>
+                <p class="version">Version 1.0</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Theme & Colors Section -->
+            <section id="section-theme" class="content-section active">
+                <div class="section-header">
+                    <h2>🎨 Theme & Colors</h2>
+                    <p>Customize your website's color scheme</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Quick Theme Presets</h3>
+                    <div class="theme-presets">
+                        <button class="theme-preset" data-theme="default">
+                            <div class="preset-colors">
+                                <span style="background: #4a90e2"></span>
+                                <span style="background: #6ac6b5"></span>
+                            </div>
+                            <span>Default Blue</span>
+                        </button>
+                        
+                        <button class="theme-preset" data-theme="ocean">
+                            <div class="preset-colors">
+                                <span style="background: #0077b6"></span>
+                                <span style="background: #00b4d8"></span>
+                            </div>
+                            <span>Ocean Blue</span>
+                        </button>
+                        
+                        <button class="theme-preset" data-theme="nature">
+                            <div class="preset-colors">
+                                <span style="background: #2d6a4f"></span>
+                                <span style="background: #52b788"></span>
+                            </div>
+                            <span>Nature Green</span>
+                        </button>
+                        
+                        <button class="theme-preset" data-theme="sunset">
+                            <div class="preset-colors">
+                                <span style="background: #ff6b35"></span>
+                                <span style="background: #ffaa5a"></span>
+                            </div>
+                            <span>Sunset Orange</span>
+                        </button>
+                        
+                        <button class="theme-preset" data-theme="purple">
+                            <div class="preset-colors">
+                                <span style="background: #7209b7"></span>
+                                <span style="background: #b185db"></span>
+                            </div>
+                            <span>Royal Purple</span>
+                        </button>
+                        
+                        <button class="theme-preset" data-theme="pink">
+                            <div class="preset-colors">
+                                <span style="background: #d8668c"></span>
+                                <span style="background: #f4a6c9"></span>
+                            </div>
+                            <span>Soft Pink</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Custom Colors</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Primary Color</label>
+                            <div class="color-input-group">
+                                <input type="color" id="primaryColor" value="#4a90e2">
+                                <input type="text" id="primaryColorText" value="#4a90e2">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Primary Dark</label>
+                            <div class="color-input-group">
+                                <input type="color" id="primaryDark" value="#3a7bc8">
+                                <input type="text" id="primaryDarkText" value="#3a7bc8">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Secondary Color</label>
+                            <div class="color-input-group">
+                                <input type="color" id="secondaryColor" value="#6ac6b5">
+                                <input type="text" id="secondaryColorText" value="#6ac6b5">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Secondary Dark</label>
+                            <div class="color-input-group">
+                                <input type="color" id="secondaryDark" value="#5ab3a3">
+                                <input type="text" id="secondaryDarkText" value="#5ab3a3">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" id="applyColors">Apply Colors</button>
+                </div>
+            </section>
+
+            <!-- Content Section -->
+            <section id="section-content" class="content-section">
+                <div class="section-header">
+                    <h2>📝 Content Management</h2>
+                    <p>Edit all website content</p>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="card">
+                    <h3>📞 Contact Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="contactName" placeholder="Dr. Sarah Johnson">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="contactTitle" placeholder="Licensed Therapist & Counselor">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Phone (without country code)</label>
+                            <input type="text" id="contactPhone" placeholder="5551234567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Country Code</label>
+                            <input type="text" id="contactCountryCode" placeholder="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="contactEmail" placeholder="hello@therapist.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="contactLocation" placeholder="New York, NY">
+                        </div>
+                    </div>
+                    
+                    <h4>Social Media</h4>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Facebook URL</label>
+                            <input type="url" id="socialFacebook" placeholder="https://facebook.com/yourpage">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Instagram URL</label>
+                            <input type="url" id="socialInstagram" placeholder="https://instagram.com/yourpage">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>LinkedIn URL</label>
+                            <input type="url" id="socialLinkedin" placeholder="https://linkedin.com/in/yourpage">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Twitter URL</label>
+                            <input type="url" id="socialTwitter" placeholder="https://twitter.com/yourpage">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Section -->
+                <div class="card">
+                    <h3>🦸 Hero Section</h3>
+                    <div class="form-group">
+                        <label>Hero Title</label>
+                        <input type="text" id="heroTitle" placeholder="Your Path to Mental Wellness Starts Here">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Hero Subtitle</label>
+                        <input type="text" id="heroSubtitle" placeholder="Professional, Compassionate Therapy Services">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Hero Description</label>
+                        <textarea id="heroDescription" rows="3" placeholder="Licensed therapist specializing in..."></textarea>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Primary Button Text</label>
+                            <input type="text" id="heroBtnPrimaryText" placeholder="Book Consultation">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Secondary Button Text</label>
+                            <input type="text" id="heroBtnSecondaryText" placeholder="Learn More">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h3>💼 Services</h3>
+                        <button class="btn-secondary btn-sm" id="addService">+ Add Service</button>
+                    </div>
+                    <div id="servicesList"></div>
+                </div>
+                
+                <!-- Testimonials -->
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h3>⭐ Testimonials</h3>
+                        <button class="btn-secondary btn-sm" id="addTestimonial">+ Add Testimonial</button>
+                    </div>
+                    <div id="testimonialsList"></div>
+                </div>
+                
+                <!-- FAQ -->
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h3>❓ FAQ</h3>
+                        <button class="btn-secondary btn-sm" id="addFAQ">+ Add Question</button>
+                    </div>
+                    <div id="faqList"></div>
+                </div>
+            </section>
+
+            <!-- Blog Section -->
+            <section id="section-blog" class="content-section">
+                <div class="section-header">
+                    <h2>📰 Blog Management</h2>
+                    <p>Manage blog posts and categories</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h3>Blog Posts</h3>
+                        <button class="btn-primary btn-sm" id="addBlogPost">+ New Blog Post</button>
+                    </div>
+                    <div id="blogPostsList"></div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h3>📁 Categories</h3>
+                        <button class="btn-secondary btn-sm" id="addCategory">+ Add Category</button>
+                    </div>
+                    <div id="categoriesList"></div>
+                </div>
+            </section>
+
+            <!-- Images Section -->
+            <section id="section-images" class="content-section">
+                <div class="section-header">
+                    <h2>🖼️ Image Management</h2>
+                    <p>Update all website images</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Main Images</h3>
+                    <div class="form-group">
+                        <label>Hero Background (1920x1080px recommended)</label>
+                        <input type="url" id="imageHero" placeholder="https://images.unsplash.com/...">
+                        <div class="image-preview" id="previewHero"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>About Section (800x600px recommended)</label>
+                        <input type="url" id="imageAbout" placeholder="https://images.unsplash.com/...">
+                        <div class="image-preview" id="previewAbout"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEO & Analytics Section -->
+            <section id="section-seo" class="content-section">
+                <div class="section-header">
+                    <h2>🔧 SEO & Analytics</h2>
+                    <p>Configure tracking codes and meta tags</p>
+                </div>
+                
+                <!-- Meta Tags -->
+                <div class="card">
+                    <h3>📄 Meta Tags</h3>
+                    <div class="form-group">
+                        <label>Site Title</label>
+                        <input type="text" id="metaTitle" placeholder="Professional Therapy Services | Dr. Sarah Mitchell">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <textarea id="metaDescription" rows="3" placeholder="Professional therapy and counseling services..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Meta Keywords (comma separated)</label>
+                        <input type="text" id="metaKeywords" placeholder="therapy, counseling, mental health">
+                    </div>
+                </div>
+                
+                <!-- Analytics & Tracking -->
+                <div class="card">
+                    <h3>📊 Analytics & Tracking Codes</h3>
+                    
+                    <div class="form-group">
+                        <label>Google Analytics ID (GA4)</label>
+                        <input type="text" id="googleAnalytics" placeholder="G-XXXXXXXXXX">
+                        <small>Format: G-XXXXXXXXXX</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Google Tag Manager ID</label>
+                        <input type="text" id="googleTagManager" placeholder="GTM-XXXXXXX">
+                        <small>Format: GTM-XXXXXXX</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Facebook Pixel ID</label>
+                        <input type="text" id="facebookPixel" placeholder="123456789012345">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Google Ads Conversion ID</label>
+                        <input type="text" id="googleAds" placeholder="AW-XXXXXXXXX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Instagram Business Tag</label>
+                        <input type="text" id="instagramTag" placeholder="Your Instagram Business ID">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>TikTok Pixel ID</label>
+                        <input type="text" id="tiktokPixel" placeholder="XXXXXXXXXXXXXX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>LinkedIn Insight Tag</label>
+                        <input type="text" id="linkedinTag" placeholder="123456">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Hotjar ID</label>
+                        <input type="text" id="hotjarId" placeholder="1234567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Microsoft Clarity ID</label>
+                        <input type="text" id="clarityId" placeholder="abcdefghij">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="section-settings" class="content-section">
+                <div class="section-header">
+                    <h2>⚙️ Settings</h2>
+                    <p>Configure website behavior</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Section Visibility</h3>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showStats" checked>
+                            Show Stats Section
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showTestimonials" checked>
+                            Show Testimonials
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showFAQ" checked>
+                            Show FAQ Section
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showBlog" checked>
+                            Show Blog Link
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Export/Import Section -->
+            <section id="section-export" class="content-section">
+                <div class="section-header">
+                    <h2>💾 Export / Import</h2>
+                    <p>Backup and restore your configuration</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Generated Configuration Files</h3>
+                    <p>Click "Generate Config Files" in the sidebar, then copy the code below to your config files.</p>
+                    
+                    <div id="generatedCode"></div>
+                </div>
+                
+                <div class="card">
+                    <h3>📥 Import Configuration</h3>
+                    <div class="form-group">
+                        <label>Paste JSON Configuration</label>
+                        <textarea id="importConfig" rows="10" placeholder='{"contact": {...}, "colors": {...}}'></textarea>
+                    </div>
+                    <button class="btn-primary" id="importBtn">Import Configuration</button>
+                </div>
+                
+                <div class="card">
+                    <h3>💾 Backup</h3>
+                    <button class="btn-secondary" id="downloadBackup">Download JSON Backup</button>
+                </div>
+            </section>
+
+            <!-- Preview Section -->
+            <section id="section-preview" class="content-section">
+                <div class="section-header">
+                    <h2>🔍 Live Preview</h2>
+                    <p>See your changes in real-time</p>
+                </div>
+                
+                <div class="card">
+                    <div class="preview-controls">
+                        <button class="preview-device active" data-device="desktop">💻 Desktop</button>
+                        <button class="preview-device" data-device="tablet">📱 Tablet</button>
+                        <button class="preview-device" data-device="mobile">📱 Mobile</button>
+                        <button class="btn-secondary btn-sm" id="refreshPreview">🔄 Refresh</button>
+                    </div>
+                    
+                    <div class="preview-frame-container">
+                        <iframe id="previewFrame" src="../index.html"></iframe>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../site-config.js"></script>
+    <script src="../blog-config.js"></script>
+    <script src="js/admin.js"></script>
+    
+</body>
+</html>
