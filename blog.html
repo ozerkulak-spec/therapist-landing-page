@@ -31,6 +31,10 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="blog.css">
+    
+    <!-- 🎨 Easy Configuration System -->
+    <script src="site-config.js"></script>
+    <script src="blog-config.js"></script>
 </head>
 <body>
 
@@ -76,13 +80,8 @@
     <!-- Category Filter -->
     <section class="blog-filter-section">
         <div class="container">
-            <div class="category-filters">
-                <button class="filter-btn active" data-category="all">All Articles</button>
-                <button class="filter-btn" data-category="anxiety">Anxiety</button>
-                <button class="filter-btn" data-category="relationships">Relationships</button>
-                <button class="filter-btn" data-category="mental-health">Mental Health</button>
-                <button class="filter-btn" data-category="personal-growth">Personal Growth</button>
-                <button class="filter-btn" data-category="stress">Stress Management</button>
+            <div class="category-filters" id="categoryFilters">
+                <!-- ⚙️ Categories auto-generated from blog-config.js -->
             </div>
         </div>
     </section>
@@ -90,134 +89,9 @@
     <!-- Blog Grid -->
     <section class="blog-section">
         <div class="container">
-            <div class="blog-grid">
-                
-                <!-- Blog Post 1 -->
-                <article class="blog-card" data-category="anxiety">
-                    <a href="blog-post-anxiety.html" class="blog-card-link">
-                        <div class="blog-card-image">
-                            <picture>
-                                <source srcset="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop&fm=webp&q=85" type="image/webp">
-                                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop&q=85" alt="Person practicing breathing exercises for anxiety relief" loading="lazy" width="800" height="500">
-                            </picture>
-                            <div class="blog-card-category">Anxiety & Stress</div>
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="blog-date">November 10, 2025</span>
-                                <span class="blog-read-time">5 min read</span>
-                            </div>
-                            <h2 class="blog-card-title">Effective Ways to Cope with Anxiety</h2>
-                            <p class="blog-card-excerpt">Discover evidence-based techniques including the 4-7-8 breathing method, cognitive restructuring, and lifestyle changes that can significantly reduce anxiety symptoms.</p>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Blog Post 2 -->
-                <article class="blog-card" data-category="relationships">
-                    <a href="blog-post-communication.html" class="blog-card-link">
-                        <div class="blog-card-image">
-                            <picture>
-                                <source srcset="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=800&h=500&fit=crop&fm=webp&q=85" type="image/webp">
-                                <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=800&h=500&fit=crop&q=85" alt="Couple having meaningful conversation" loading="lazy" width="800" height="500">
-                            </picture>
-                            <div class="blog-card-category">Relationships</div>
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="blog-date">November 8, 2025</span>
-                                <span class="blog-read-time">7 min read</span>
-                            </div>
-                            <h2 class="blog-card-title">7 Golden Rules of Healthy Communication in Relationships</h2>
-                            <p class="blog-card-excerpt">Master active listening, use "I" statements, show empathy, and learn the other essential communication skills that create deeper emotional connections with your partner.</p>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Blog Post 3 -->
-                <article class="blog-card" data-category="personal-growth">
-                    <a href="blog-post-selfcare.html" class="blog-card-link">
-                        <div class="blog-card-image">
-                            <picture>
-                                <source srcset="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=500&fit=crop&fm=webp&q=85" type="image/webp">
-                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=500&fit=crop&q=85" alt="Woman practicing self-care with meditation" loading="lazy" width="800" height="500">
-                            </picture>
-                            <div class="blog-card-category">Personal Growth</div>
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="blog-date">November 5, 2025</span>
-                                <span class="blog-read-time">6 min read</span>
-                            </div>
-                            <h2 class="blog-card-title">What is Self-Care and Why is it So Important?</h2>
-                            <p class="blog-card-excerpt">Learn about physical, emotional, social, and spiritual self-care practices that you can easily incorporate into your daily routine for better mental health.</p>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Blog Post 4 -->
-                <article class="blog-card" data-category="stress">
-                    <a href="blog-post-stress.html" class="blog-card-link">
-                        <div class="blog-card-image">
-                            <picture>
-                                <source srcset="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=800&h=500&fit=crop&fm=webp&q=85" type="image/webp">
-                                <img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=800&h=500&fit=crop&q=85" alt="Professional managing workplace stress" loading="lazy" width="800" height="500">
-                            </picture>
-                            <div class="blog-card-category">Stress Management</div>
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="blog-date">November 2, 2025</span>
-                                <span class="blog-read-time">6 min read</span>
-                            </div>
-                            <h2 class="blog-card-title">Stress Management Techniques in the Workplace</h2>
-                            <p class="blog-card-excerpt">Master time management, learn to set boundaries, practice mindfulness at work, and discover quick relaxation exercises you can do at your desk.</p>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Blog Post 5 -->
-                <article class="blog-card" data-category="mental-health">
-                    <a href="blog-post-depression.html" class="blog-card-link">
-                        <div class="blog-card-image">
-                            <picture>
-                                <source srcset="https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=500&fit=crop&fm=webp&q=85" type="image/webp">
-                                <img src="https://images.unsplash.com/photo-1509909756405-be0199881695?w=800&h=500&fit=crop&q=85" alt="Understanding depression and mental health support" loading="lazy" width="800" height="500">
-                            </picture>
-                            <div class="blog-card-category">Mental Health</div>
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="blog-date">October 30, 2025</span>
-                                <span class="blog-read-time">8 min read</span>
-                            </div>
-                            <h2 class="blog-card-title">Understanding Depression: Symptoms and Getting Support</h2>
-                            <p class="blog-card-excerpt">Recognize the warning signs, understand the difference between sadness and clinical depression, and learn when and how to seek professional help.</p>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Blog Post 6 -->
-                <article class="blog-card" data-category="personal-growth">
-                    <a href="blog-post-boundaries.html" class="blog-card-link">
-                        <div class="blog-card-image">
-                            <picture>
-                                <source srcset="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=500&fit=crop&fm=webp&q=85" type="image/webp">
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=500&fit=crop&q=85" alt="Person setting healthy boundaries" loading="lazy" width="800" height="500">
-                            </picture>
-                            <div class="blog-card-category">Personal Growth</div>
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="blog-date">October 26, 2025</span>
-                                <span class="blog-read-time">5 min read</span>
-                            </div>
-                            <h2 class="blog-card-title">Learning to Set Healthy Boundaries</h2>
-                            <p class="blog-card-excerpt">Understand the types of boundaries, recognize when yours are being violated, and learn how to communicate your limits clearly and compassionately.</p>
-                        </div>
-                    </a>
-                </article>
-
+            <div class="blog-grid" id="blogGrid">
+                <!-- ⚙️ Blog posts auto-generated from blog-config.js -->
+                <!-- Add/remove posts in blog-config.js file -->
             </div>
         </div>
     </section>
@@ -295,10 +169,37 @@
     <!-- Configuration Script -->
     <script src="config.js" defer></script>
     
-    <!-- Blog Filter Script -->
+    <!-- 🎨 Auto-Generate Blog Content from blog-config.js -->
     <script defer>
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu Toggle
+            // ═══════════════════════════════════════════════════════════════
+            // 📝 AUTO-GENERATE CATEGORY FILTERS
+            // ═══════════════════════════════════════════════════════════════
+            const filtersContainer = document.getElementById('categoryFilters');
+            if (filtersContainer && typeof BLOG_CATEGORIES !== 'undefined') {
+                BLOG_CATEGORIES.forEach((cat, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'filter-btn' + (index === 0 ? ' active' : '');
+                    btn.dataset.category = cat.slug;
+                    btn.textContent = `${cat.icon} ${cat.name}`;
+                    filtersContainer.appendChild(btn);
+                });
+            }
+
+            // ═══════════════════════════════════════════════════════════════
+            // 📰 AUTO-GENERATE BLOG CARDS
+            // ═══════════════════════════════════════════════════════════════
+            const blogGrid = document.getElementById('blogGrid');
+            if (blogGrid && typeof BLOG_POSTS !== 'undefined') {
+                const posts = getAllPosts(); // From blog-config.js
+                posts.forEach(post => {
+                    blogGrid.innerHTML += generateBlogCard(post); // Function from blog-config.js
+                });
+            }
+
+            // ═══════════════════════════════════════════════════════════════
+            // 📱 MOBILE MENU
+            // ═══════════════════════════════════════════════════════════════
             const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
             const navMenu = document.querySelector('.nav-menu');
             
@@ -318,39 +219,47 @@
                 });
             });
 
-            // Blog Category Filter
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const blogCards = document.querySelectorAll('.blog-card');
+            // ═══════════════════════════════════════════════════════════════
+            // 🔍 CATEGORY FILTER FUNCTIONALITY
+            // ═══════════════════════════════════════════════════════════════
+            // Wait a bit for blog cards to be generated
+            setTimeout(() => {
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                const blogCards = document.querySelectorAll('.blog-card');
 
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Update active button
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Update active button
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
 
-                    // Get selected category
-                    const category = btn.getAttribute('data-category');
+                        // Get selected category
+                        const category = btn.getAttribute('data-category');
 
-                    // Filter blog cards
-                    blogCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, 10);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(20px)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
+                        // Filter blog cards
+                        blogCards.forEach(card => {
+                            const cardCategory = card.dataset.category;
+                            if (category === 'all' || cardCategory === category) {
+                                card.style.display = 'block';
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0)';
+                                }, 10);
+                            } else {
+                                card.style.opacity = '0';
+                                card.style.transform = 'translateY(20px)';
+                                setTimeout(() => {
+                                    card.style.display = 'none';
+                                }, 300);
+                            }
+                        });
                     });
                 });
-            });
+            }, 100);
 
-            // Newsletter form
+            // ═══════════════════════════════════════════════════════════════
+            // 📧 NEWSLETTER FORM
+            // ═══════════════════════════════════════════════════════════════
             const newsletterForm = document.querySelector('.newsletter-form');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', (e) => {

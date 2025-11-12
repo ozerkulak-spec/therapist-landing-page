@@ -1,3 +1,29 @@
+/* ═══════════════════════════════════════════════════════════════════
+   🎨 CSS VARIABLES - AUTO-UPDATED FROM site-config.js
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+    /* Default colors (will be overridden by site-config.js) */
+    --primary-color: var(--primary-color);
+    --primary-dark: #3a7bc8;
+    --secondary-color: var(--secondary-color);
+    --secondary-dark: #5ab3a3;
+    --text-dark: var(--text-dark);
+    --text-muted: var(--text-muted)666;
+    --text-light: #ffffff;
+    --bg-light: var(--bg-light);
+    --bg-white: #ffffff;
+    --bg-dark: var(--text-dark);
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --gradient-start: var(--primary-color);
+    --gradient-end: var(--secondary-color);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   GLOBAL STYLES
+   ═══════════════════════════════════════════════════════════════════ */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,8 +37,8 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #fff;
+    color: var(--text-dark);
+    background-color: var(--bg-white);
 }
 
 .container {
@@ -24,7 +50,7 @@ body {
 .navbar {
     position: sticky;
     top: 0;
-    background-color: #fff;
+    background-color: var(--bg-white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     padding: 15px 0;
@@ -39,7 +65,7 @@ body {
 .logo {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #4a90e2;
+    color: var(--primary-color);
 }
 
 .nav-menu {
@@ -57,12 +83,12 @@ body {
 }
 
 .nav-menu a:hover {
-    color: #4a90e2;
+    color: var(--primary-color);
 }
 
 .nav-cta {
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
-    color: #fff;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--text-light);
     padding: 10px 25px;
     border-radius: 25px;
     text-decoration: none;
@@ -89,7 +115,7 @@ body {
 .mobile-menu-toggle span {
     width: 25px;
     height: 3px;
-    background-color: #4a90e2;
+    background-color: var(--primary-color);
     border-radius: 3px;
     transition: all 0.3s ease;
 }
@@ -110,7 +136,7 @@ body {
     position: fixed;
     bottom: 30px;
     left: 30px;
-    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #357abd 100%);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -169,7 +195,7 @@ body {
 }
 
 .hero-section {
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     padding: 100px 20px 80px;
 }
 
@@ -181,7 +207,7 @@ body {
 }
 
 .hero-text {
-    color: #fff;
+    color: var(--text-light);
 }
 
 .hero-title {
@@ -238,8 +264,8 @@ body {
 }
 
 .cta-button.primary {
-    background-color: #fff;
-    color: #4a90e2;
+    background-color: var(--text-light);
+    color: var(--primary-color);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -250,7 +276,7 @@ body {
 
 .cta-button.secondary {
     background-color: transparent;
-    color: #fff;
+    color: var(--text-light);
     border: 2px solid #fff;
 }
 
@@ -294,7 +320,7 @@ body {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     padding: 20px 30px;
     border-radius: 12px;
     text-align: center;
@@ -305,14 +331,14 @@ body {
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-light);
     line-height: 1;
 }
 
 .badge-text {
     display: block;
     font-size: 0.9rem;
-    color: #fff;
+    color: var(--text-light);
     font-weight: 500;
     margin-top: 5px;
 }
@@ -325,13 +351,13 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 25px;
-    color: #2c3e50;
+    color: var(--text-dark);
 }
 
 .about-intro {
     font-size: 1.2rem;
     font-weight: 500;
-    color: #4a90e2;
+    color: var(--primary-color);
     margin-bottom: 20px;
 }
 
@@ -352,7 +378,7 @@ body {
 .credential-item {
     text-align: center;
     padding: 25px;
-    background-color: #fff;
+    background-color: var(--text-light);
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
@@ -375,7 +401,7 @@ body {
 
 .services-section {
     padding: 100px 20px;
-    background-color: #fff;
+    background-color: var(--text-light);
 }
 
 .services-section .section-title {
@@ -386,7 +412,7 @@ body {
 .section-subtitle {
     text-align: center;
     font-size: 1.1rem;
-    color: #666;
+    color: var(--text-muted);
     margin-bottom: 60px;
     max-width: 700px;
     margin-left: auto;
@@ -411,8 +437,8 @@ body {
 .service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    border-color: #4a90e2;
-    background-color: #fff;
+    border-color: var(--primary-color);
+    background-color: var(--text-light);
 }
 
 .service-icon {
@@ -425,12 +451,12 @@ body {
     font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 15px;
-    color: #2c3e50;
+    color: var(--text-dark);
 }
 
 .service-description {
     font-size: 0.95rem;
-    color: #666;
+    color: var(--text-muted);
     line-height: 1.7;
 }
 
@@ -451,7 +477,7 @@ body {
 }
 
 .why-card {
-    background-color: #fff;
+    background-color: var(--text-light);
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
@@ -467,7 +493,7 @@ body {
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
 .why-card:hover {
@@ -478,7 +504,7 @@ body {
 .why-number {
     font-size: 3rem;
     font-weight: 700;
-    color: #4a90e2;
+    color: var(--primary-color);
     opacity: 0.2;
     margin-bottom: 15px;
 }
@@ -487,18 +513,18 @@ body {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 15px;
-    color: #2c3e50;
+    color: var(--text-dark);
 }
 
 .why-card p {
     font-size: 0.95rem;
-    color: #666;
+    color: var(--text-muted);
     line-height: 1.7;
 }
 
 .testimonials-section {
     padding: 100px 20px;
-    background-color: #fff;
+    background-color: var(--text-light);
 }
 
 .testimonials-section .section-title {
@@ -516,7 +542,7 @@ body {
     background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
     padding: 40px;
     border-radius: 15px;
-    border-left: 4px solid #4a90e2;
+    border-left: 4px solid var(--primary-color);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     position: relative;
     transition: all 0.3s ease;
@@ -530,7 +556,7 @@ body {
 .quote-icon {
     font-size: 4rem;
     font-weight: 700;
-    color: #4a90e2;
+    color: var(--primary-color);
     opacity: 0.2;
     line-height: 1;
     margin-bottom: 15px;
@@ -552,13 +578,13 @@ body {
 
 .testimonial-author strong {
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--text-dark);
     font-size: 1.1rem;
 }
 
 .testimonial-author span {
     font-size: 0.9rem;
-    color: #4a90e2;
+    color: var(--primary-color);
     font-weight: 500;
 }
 
@@ -599,7 +625,7 @@ body {
 .form-group label {
     font-weight: 500;
     margin-bottom: 10px;
-    color: #2c3e50;
+    color: var(--text-dark);
     font-size: 0.95rem;
 }
 
@@ -611,13 +637,13 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background-color: #fff;
+    background-color: var(--text-light);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #4a90e2;
+    border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
@@ -627,8 +653,8 @@ body {
 
 .submit-button {
     padding: 16px 40px;
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
-    color: #fff;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--text-light);
     border: none;
     border-radius: 30px;
     font-family: 'Poppins', sans-serif;
@@ -651,7 +677,7 @@ body {
 }
 
 .contact-info-card {
-    background-color: #fff;
+    background-color: var(--text-light);
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -672,26 +698,26 @@ body {
 .contact-details h3 {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--text-dark);
     margin-bottom: 8px;
 }
 
 .contact-details p {
     font-size: 0.95rem;
-    color: #666;
+    color: var(--text-muted);
     margin-bottom: 10px;
 }
 
 .contact-details a {
     font-size: 0.9rem;
-    color: #4a90e2;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .contact-details a:hover {
-    color: #6ac6b5;
+    color: var(--secondary-color);
 }
 
 .whatsapp-card {
@@ -703,14 +729,14 @@ body {
 
 .whatsapp-card h3,
 .whatsapp-card p {
-    color: #fff;
+    color: var(--text-light);
 }
 
 .whatsapp-button {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background-color: #fff;
+    background-color: var(--text-light);
     color: #25d366;
     padding: 12px 25px;
     border-radius: 30px;
@@ -727,8 +753,8 @@ body {
 }
 
 .footer {
-    background-color: #2c3e50;
-    color: #fff;
+    background-color: var(--text-dark);
+    color: var(--text-light);
     padding: 60px 20px 30px;
 }
 
@@ -743,7 +769,7 @@ body {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 20px;
-    color: #fff;
+    color: var(--text-light);
 }
 
 .footer-col p {
@@ -767,12 +793,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: var(--text-light);
     transition: all 0.3s ease;
 }
 
 .social-links a:hover {
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     transform: translateY(-3px);
 }
 
@@ -792,7 +818,7 @@ body {
 }
 
 .footer-links a:hover {
-    color: #6ac6b5;
+    color: var(--secondary-color);
     padding-left: 5px;
 }
 
@@ -843,7 +869,7 @@ body {
 /* Stats Section */
 .stats-section {
     padding: 80px 20px;
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
 .stats-grid {
@@ -856,7 +882,7 @@ body {
 
 .stat-item {
     text-align: center;
-    color: #fff;
+    color: var(--text-light);
     padding: 20px;
 }
 
@@ -909,7 +935,7 @@ body {
 }
 
 .faq-item {
-    background-color: #fff;
+    background-color: var(--text-light);
     border-radius: 12px;
     margin-bottom: 15px;
     overflow: hidden;
@@ -933,19 +959,19 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--text-dark);
     text-align: left;
     transition: all 0.3s ease;
 }
 
 .faq-question:hover {
-    color: #4a90e2;
+    color: var(--primary-color);
 }
 
 .faq-icon {
     flex-shrink: 0;
     transition: transform 0.3s ease;
-    color: #4a90e2;
+    color: var(--primary-color);
 }
 
 .faq-item.active .faq-icon {
@@ -966,7 +992,7 @@ body {
 .faq-answer p {
     font-size: 1rem;
     line-height: 1.8;
-    color: #666;
+    color: var(--text-muted);
     margin: 0;
 }
 
@@ -977,7 +1003,7 @@ body {
     right: 110px;
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -1095,7 +1121,7 @@ body {
         top: 70px;
         left: -100%;
         width: 100%;
-        background-color: #fff;
+        background-color: var(--text-light);
         flex-direction: column;
         padding: 20px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
