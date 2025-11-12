@@ -952,3 +952,161 @@ function copyCode(elementId) {
 
 // Make copyCode available globally for onclick
 window.copyCode = copyCode;
+
+// ═══════════════════════════════════════════════════════════════════
+// BLOG MANAGEMENT
+// ═══════════════════════════════════════════════════════════════════
+
+function initBlogManagement() {
+    document.getElementById('addBlogPost').addEventListener('click', openAddBlogModal);
+    document.getElementById('addCategory').addEventListener('click', openAddCategoryModal);
+}
+
+// Blog Post Modal Functions
+function openAddBlogModal() {
+    document.getElementById('editBlogIndex').value = '-1';
+    document.getElementById('blogModalTitle').textContent = 'Add Blog Post';
+    
+    // Clear form
+    document.getElementById('blogTitle').value = '';
+    document.getElementById('blogExcerpt').value = '';
+    document.getElementById('blogCategory').value = '';
+    document.getElementById('blogAuthor').value = 'Dr. Sarah Mitchell';
+    document.getElementById('blogReadTime').value = '5';
+    document.getElementById('blogDate').value = new Date().toISOString().split('T')[0];
+    document.getElementById('blogImage').value = '';
+    document.getElementById('blogFilename').value = '';
+    document.getElementById('blogKeywords').value = '';
+    document.getElementById('blogFeatured').checked = false;
+    document.getElementById('blogShowOnHomepage').checked = false;
+    
+    // Populate categories
+    const categorySelect = document.getElementById('blogCategory');
+    categorySelect.innerHTML = '<option value="">Select category...</option>' +
+        config.blog.categories
+            .filter(cat => cat.slug !== 'all')
+            .map(cat => `<option value="${cat.name}">${cat.icon} ${cat.name}</option>`)
+            .join('');
+    
+    document.getElementById('blogPostModal').classList.add('show');
+}
+
+function openEditBlogModal(index) {
+    const post = config.blog.posts[index];
+    
+    document.getElementById('editBlogIndex').value = index;
+    document.getElementById('blogModalTitle').textContent = 'Edit Blog Post';
+    
+    document.getElementById('blogTitle').value = post.title;
+    document.getElementById('blogExcerpt').value = post.excerpt;
+    document.getElementById('blogCategory').value = post.category;
+    document.getElementById('blogAuthor').value = post.author;
+    document.getElementById('blogReadTime').value = post.readTime;
+    document.getElementById('blogDate').value = post.date;
+    document.getElementById('blogImage').value = post.image;
+    document.getElementById('blogFilename').value = post.filename;
+    document.getElementById('blogKeywords').value = post.keywords.join(', ');
+    document.getElementById('blogFeatured').checked = post.featured;
+    document.getElementById('blogShowOnHomepage').checked = post.showOnHomepage;
+    
+    // Populate categories
+    const categorySelect = document.getElementById('blogCategory');
+    categorySelect.innerHTML = '<option value="">Select category...</option>' +
+        config.blog.categories
+            .filter(cat => cat.slug !== 'all')
+            .map(cat => `<option value="${cat.name}">${cat.icon} ${cat.name}</option>`)
+            .join('');
+    
+    document.getElementById('blogPostModal').classList.add('show');
+}
+
+window.closeBlogModal = function() {
+    document.getElementById('blogPostModal').classList.remove('show');
+};
+
+window.saveBlogPost = function() {
+    const title = document.getElementById('blogTitle').value.trim();
+    const excerpt = document.getElementById('blogExcerpt').value.trim();
+    const category = document.getElementById('blogCategory').value;
+    
+    if (!title || !excerpt || !category) {
+        showToast('Please fill required fields (Title, Excerpt, Category)', 'error');
+        return;
+    }
+    
+    const post = {
+        id: Date.now(),
+        title: title,
+        excerpt: excerpt,
+        category: category,
+        author: document.getElementById('blogAuthor').value || 'Dr. Sarah Mitchell',
+        readTime: parseInt(document.getElementById('blogReadTime').value) || 5,
+        date: document.getElementById('blogDate').value || new Date().toISOString().split('T')[0],
+        image: document.getElementById('blogImage').value || 'https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=800',
+        filename: document.getElementById('blogFilename').value || `${title.toLowerCase().replace(/\s+/g, '-')}.html`,
+        keywords: document.getElementById('blogKeywords').value.split(',').map(k => k.trim()).filter(k => k),
+        featured: document.getElementById('blogFeatured').checked,
+        showOnHomepage: document.getElementById('blogShowOnHomepage').checked
+    };
+    
+    const editIndex = parseInt(document.getElementById('editBlogIndex').value);
+    
+    if (editIndex >= 0) {
+        // Update existing post
+        config.blog.posts[editIndex] = post;
+        showToast('✅ Blog post updated! Click PUBLISH to apply.', 'success');
+    } else {
+        // Add new post
+        config.blog.posts.unshift(post);
+        showToast('✅ Blog post added! Click PUBLISH to apply.', 'success');
+    }
+    
+    closeBlogModal();
+    renderBlogPosts();
+};
+
+// Category Modal Functions
+function openAddCategoryModal() {
+    document.getElementById('categoryName').value = '';
+    document.getElementById('categorySlug').value = '';
+    document.getElementById('categoryIcon').value = '';
+    
+    document.getElementById('categoryModal').classList.add('show');
+}
+
+window.closeCategoryModal = function() {
+    document.getElementById('categoryModal').classList.remove('show');
+};
+
+window.saveCategory = function() {
+    const name = document.getElementById('categoryName').value.trim();
+    const slug = document.getElementById('categorySlug').value.trim();
+    const icon = document.getElementById('categoryIcon').value.trim();
+    
+    if (!name || !slug) {
+        showToast('Please fill required fields (Name, Slug)', 'error');
+        return;
+    }
+    
+    const category = {
+        name: name,
+        slug: slug,
+        icon: icon || '📄'
+    };
+    
+    config.blog.categories.push(category);
+    showToast('✅ Category added! Click PUBLISH to apply.', 'success');
+    
+    closeCategoryModal();
+    renderCategories();
+};
+
+// Update editBlogPost function
+function editBlogPost(index) {
+    openEditBlogModal(index);
+}
+
+// Initialize blog management on load
+document.addEventListener('DOMContentLoaded', function() {
+    initBlogManagement();
+});

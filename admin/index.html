@@ -518,6 +518,97 @@
         </main>
     </div>
 
+    <!-- Blog Post Modal -->
+    <div id="blogPostModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="blogModalTitle">Add Blog Post</h3>
+                <button class="modal-close" onclick="closeBlogModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editBlogIndex" value="-1">
+                
+                <label>Title *</label>
+                <input type="text" id="blogTitle" placeholder="Post title" required>
+                
+                <label>Excerpt *</label>
+                <textarea id="blogExcerpt" rows="3" placeholder="Short description (150 chars)" required></textarea>
+                
+                <label>Category *</label>
+                <select id="blogCategory" required>
+                    <option value="">Select category...</option>
+                </select>
+                
+                <div class="form-grid">
+                    <div>
+                        <label>Author</label>
+                        <input type="text" id="blogAuthor" placeholder="Dr. Sarah Mitchell">
+                    </div>
+                    <div>
+                        <label>Read Time (min)</label>
+                        <input type="number" id="blogReadTime" placeholder="5" min="1">
+                    </div>
+                </div>
+                
+                <label>Date</label>
+                <input type="date" id="blogDate">
+                
+                <label>Image URL</label>
+                <input type="url" id="blogImage" placeholder="https://...">
+                
+                <label>Article Filename</label>
+                <input type="text" id="blogFilename" placeholder="article-slug.html">
+                
+                <label>Keywords (comma-separated)</label>
+                <input type="text" id="blogKeywords" placeholder="therapy, anxiety, mental health">
+                
+                <div style="display: flex; gap: 20px; margin-top: 10px;">
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="blogFeatured">
+                        <span>Featured Post</span>
+                    </label>
+                    
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="blogShowOnHomepage">
+                        <span>Show on Homepage</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeBlogModal()">Cancel</button>
+                <button class="btn-primary" onclick="saveBlogPost()">Save Post</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Category Modal -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Category</h3>
+                <button class="modal-close" onclick="closeCategoryModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label>Category Name *</label>
+                <input type="text" id="categoryName" placeholder="Mental Health" required>
+                
+                <label>Slug (URL-friendly) *</label>
+                <input type="text" id="categorySlug" placeholder="mental-health" required>
+                
+                <label>Icon (emoji)</label>
+                <input type="text" id="categoryIcon" placeholder="🧠" maxlength="2">
+                
+                <p style="color: #6b7280; font-size: 14px; margin-top: 10px;">
+                    Emoji ideas: 🧠 💝 🌱 😌 💪 🎯 🌟 ✨
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeCategoryModal()">Cancel</button>
+                <button class="btn-primary" onclick="saveCategory()">Save Category</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="../site-config.js"></script>
     <script src="../blog-config.js"></script>
