@@ -648,22 +648,15 @@ function initPreview() {
 }
 
 function applyColorsToPreview() {
-    try {
-        const iframe = document.getElementById('previewFrame');
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        
-        // Apply CSS variables to preview
-        const root = iframeDoc.documentElement;
-        root.style.setProperty('--primary-color', config.colors.primary || '#4a90e2');
-        root.style.setProperty('--primary-dark', config.colors.primaryDark || '#3a7bc8');
-        root.style.setProperty('--secondary-color', config.colors.secondary || '#6ac6b5');
-        root.style.setProperty('--secondary-dark', config.colors.secondaryDark || '#5ab3a3');
-        
-        console.log('Colors applied to preview:', config.colors);
-    } catch (error) {
-        console.error('Could not apply colors to preview (cross-origin issue):', error);
-        showToast('Preview updated! (Refresh if colors don\'t show)', 'success');
-    }
+    // Since iframe access might be blocked, inject colors via localStorage and reload
+    localStorage.setItem('previewColors', JSON.stringify(config.colors));
+    
+    // Reload the iframe to apply new colors
+    const iframe = document.getElementById('previewFrame');
+    const timestamp = new Date().getTime();
+    iframe.src = `../index.html?t=${timestamp}`;
+    
+    console.log('Preview reloaded with new colors:', config.colors);
 }
 
 // ═══════════════════════════════════════════════════════════════════

@@ -335,10 +335,14 @@ function applyTheme() {
     const root = document.documentElement;
     const colors = SITE_CONFIG.colors;
     
-    root.style.setProperty('--primary-color', colors.primary);
-    root.style.setProperty('--primary-dark', colors.primaryDark);
-    root.style.setProperty('--secondary-color', colors.secondary);
-    root.style.setProperty('--secondary-dark', colors.secondaryDark);
+    // Check if admin dashboard has set preview colors via localStorage
+    const previewColors = localStorage.getItem('previewColors');
+    const activeColors = previewColors ? JSON.parse(previewColors) : colors;
+    
+    root.style.setProperty('--primary-color', activeColors.primary);
+    root.style.setProperty('--primary-dark', activeColors.primaryDark);
+    root.style.setProperty('--secondary-color', activeColors.secondary);
+    root.style.setProperty('--secondary-dark', activeColors.secondaryDark);
     root.style.setProperty('--text-dark', colors.textDark);
     root.style.setProperty('--text-muted', colors.textMuted);
     root.style.setProperty('--text-light', colors.textLight);
