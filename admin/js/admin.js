@@ -259,6 +259,7 @@ function initColorPickers() {
         const colorPicker = document.getElementById(input.color);
         const textInput = document.getElementById(input.text);
         
+        // Sync color picker and text input (but don't apply to preview yet)
         colorPicker.addEventListener('input', () => {
             textInput.value = colorPicker.value;
         });
@@ -270,7 +271,7 @@ function initColorPickers() {
         });
     });
     
-    // Apply colors button
+    // Apply colors button - ONLY update preview when clicked
     document.getElementById('applyColors').addEventListener('click', () => {
         config.colors = {
             primary: document.getElementById('primaryColor').value,
@@ -282,7 +283,7 @@ function initColorPickers() {
         // Apply to preview iframe
         applyColorsToPreview();
         
-        showToast('Colors saved and applied to preview!', 'success');
+        showToast('Colors applied to preview!', 'success');
     });
 }
 
@@ -624,11 +625,17 @@ function initPreview() {
     const frameContainer = document.querySelector('.preview-frame-container');
     const iframe = document.getElementById('previewFrame');
     
-    // Apply colors when iframe loads
+    // Apply colors only on manual refresh, not on every load
+    let isFirstLoad = true;
     iframe.addEventListener('load', () => {
-        setTimeout(() => {
-            applyColorsToPreview();
-        }, 500);
+        if (isFirstLoad) {
+            // First load - apply current colors if any
+            const previewColors = localStorage.getItem('previewColors');
+            if (previewColors) {
+                // Colors already set, no need to reload again
+                isFirstLoad = false;
+            }
+        }
     });
     
     deviceButtons.forEach(btn => {
@@ -642,7 +649,8 @@ function initPreview() {
     });
     
     document.getElementById('refreshPreview').addEventListener('click', () => {
-        document.getElementById('previewFrame').src = document.getElementById('previewFrame').src;
+        const timestamp = new Date().getTime();
+        iframe.src = `../index.html?t=${timestamp}`;
         showToast('Preview refreshed!', 'success');
     });
 }
