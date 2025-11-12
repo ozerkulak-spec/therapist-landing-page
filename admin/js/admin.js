@@ -43,8 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize form handlers
     initFormHandlers();
     
-    // Initialize generate button
-    document.getElementById('generateConfig').addEventListener('click', generateConfigFiles);
+    // Initialize save buttons for each section
+    initSaveButtons();
+    
+    // Initialize publish button (MAIN BUTTON)
+    document.getElementById('generateConfig').addEventListener('click', publishChanges);
     
     // Initialize import/export
     initImportExport();
@@ -271,36 +274,69 @@ function initColorPickers() {
         });
     });
     
-    // Apply colors button - ONLY update preview when clicked
-    document.getElementById('applyColors').addEventListener('click', () => {
-        config.colors = {
-            primary: document.getElementById('primaryColor').value,
-            primaryDark: document.getElementById('primaryDark').value,
-            secondary: document.getElementById('secondaryColor').value,
-            secondaryDark: document.getElementById('secondaryDark').value
-        };
-        
-        // Apply to preview iframe
-        applyColorsToPreview();
-        
-        showToast('Colors applied to preview!', 'success');
-    });
+    // Apply colors button handled in initSaveButtons()
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// FORM HANDLERS
+// FORM HANDLERS & SAVE BUTTONS
 // ═══════════════════════════════════════════════════════════════════
 
 function initFormHandlers() {
-    // Auto-save on input change
-    const inputs = document.querySelectorAll('input, textarea, select');
-    inputs.forEach(input => {
-        input.addEventListener('change', saveFormData);
-    });
+    // Remove auto-save, only save when button clicked
 }
 
-function saveFormData() {
-    // Contact
+function initSaveButtons() {
+    // Save Colors button
+    document.getElementById('applyColors').addEventListener('click', saveColors);
+    
+    // Save Contact button
+    const saveContactBtn = document.createElement('button');
+    saveContactBtn.className = 'btn-primary btn-block';
+    saveContactBtn.textContent = '💾 Save Contact Info';
+    saveContactBtn.style.marginTop = '20px';
+    saveContactBtn.onclick = saveContactInfo;
+    document.querySelector('#section-content .card').appendChild(saveContactBtn);
+    
+    // Save Hero button
+    const saveHeroBtn = document.createElement('button');
+    saveHeroBtn.className = 'btn-primary btn-block';
+    saveHeroBtn.textContent = '💾 Save Hero Section';
+    saveHeroBtn.style.marginTop = '20px';
+    saveHeroBtn.onclick = saveHeroSection;
+    document.querySelectorAll('#section-content .card')[1].appendChild(saveHeroBtn);
+    
+    // Save Images button
+    const saveImagesBtn = document.createElement('button');
+    saveImagesBtn.className = 'btn-primary btn-block';
+    saveImagesBtn.textContent = '💾 Save Images';
+    saveImagesBtn.style.marginTop = '20px';
+    saveImagesBtn.onclick = saveImages;
+    document.querySelector('#section-images .card').appendChild(saveImagesBtn);
+    
+    // Save Settings button
+    const saveSettingsBtn = document.createElement('button');
+    saveSettingsBtn.className = 'btn-primary btn-block';
+    saveSettingsBtn.textContent = '💾 Save Settings';
+    saveSettingsBtn.style.marginTop = '20px';
+    saveSettingsBtn.onclick = saveSettings;
+    document.querySelector('#section-settings .card').appendChild(saveSettingsBtn);
+}
+
+function saveColors() {
+    config.colors = {
+        primary: document.getElementById('primaryColor').value,
+        primaryDark: document.getElementById('primaryDark').value,
+        secondary: document.getElementById('secondaryColor').value,
+        secondaryDark: document.getElementById('secondaryDark').value
+    };
+    
+    // Apply to preview iframe
+    applyColorsToPreview();
+    
+    showToast('✅ Colors saved! Click PUBLISH to apply to website.', 'success');
+}
+
+function saveContactInfo() {
     config.contact = {
         name: document.getElementById('contactName').value,
         title: document.getElementById('contactTitle').value,
@@ -315,8 +351,10 @@ function saveFormData() {
             twitter: document.getElementById('socialTwitter').value
         }
     };
-    
-    // Hero
+    showToast('✅ Contact info saved! Click PUBLISH to apply.', 'success');
+}
+
+function saveHeroSection() {
     config.hero = {
         title: document.getElementById('heroTitle').value,
         subtitle: document.getElementById('heroSubtitle').value,
@@ -334,22 +372,44 @@ function saveFormData() {
             }
         }
     };
-    
-    // Images
+    showToast('✅ Hero section saved! Click PUBLISH to apply.', 'success');
+}
+
+function saveImages() {
     config.images = {
         hero: document.getElementById('imageHero').value,
         about: document.getElementById('imageAbout').value
     };
     
-    // Settings
+    // Show previews
+    const heroPreview = document.getElementById('heroImagePreview');
+    const aboutPreview = document.getElementById('aboutImagePreview');
+    
+    if (config.images.hero) {
+        heroPreview.innerHTML = `<img src="${config.images.hero}" alt="Hero" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">`;
+        heroPreview.classList.add('show');
+    }
+    
+    if (config.images.about) {
+        aboutPreview.innerHTML = `<img src="${config.images.about}" alt="About" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">`;
+        aboutPreview.classList.add('show');
+    }
+    
+    showToast('✅ Images saved! Click PUBLISH to apply.', 'success');
+}
+
+function saveSettings() {
     config.settings = {
         showStats: document.getElementById('showStats').checked,
         showTestimonials: document.getElementById('showTestimonials').checked,
         showFAQ: document.getElementById('showFAQ').checked,
         showBlog: document.getElementById('showBlog').checked
     };
-    
-    console.log('Config updated:', config);
+    showToast('✅ Settings saved! Click PUBLISH to apply.', 'success');
+}
+
+function saveFormData() {
+    // Deprecated - now using individual save buttons
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -376,14 +436,22 @@ function renderServices() {
             <div class="item-card-header">
                 <div class="item-card-title">${service.icon} ${service.title}</div>
                 <div class="item-card-actions">
-                    <button class="btn-icon" onclick="editService(${index})">✏️</button>
-                    <button class="btn-icon" onclick="deleteService(${index})">🗑️</button>
+                    <button class="btn-icon" data-action="edit-service" data-index="${index}">✏️</button>
+                    <button class="btn-icon" data-action="delete-service" data-index="${index}">🗑️</button>
                 </div>
             </div>
             <p>${service.description}</p>
             <p><strong>${service.price}</strong> • ${service.duration}</p>
         </div>
     `).join('');
+    
+    // Add event listeners
+    container.querySelectorAll('[data-action="delete-service"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteService(parseInt(btn.dataset.index)));
+    });
+    container.querySelectorAll('[data-action="edit-service"]').forEach(btn => {
+        btn.addEventListener('click', () => editService(parseInt(btn.dataset.index)));
+    });
 }
 
 function renderTestimonials() {
@@ -398,14 +466,21 @@ function renderTestimonials() {
             <div class="item-card-header">
                 <div class="item-card-title">${'⭐'.repeat(item.rating)} ${item.name}</div>
                 <div class="item-card-actions">
-                    <button class="btn-icon" onclick="editTestimonial(${index})">✏️</button>
-                    <button class="btn-icon" onclick="deleteTestimonial(${index})">🗑️</button>
+                    <button class="btn-icon" data-action="edit-testimonial" data-index="${index}">✏️</button>
+                    <button class="btn-icon" data-action="delete-testimonial" data-index="${index}">🗑️</button>
                 </div>
             </div>
             <p>${item.text}</p>
             <p><em>${item.role}</em></p>
         </div>
     `).join('');
+    
+    container.querySelectorAll('[data-action="delete-testimonial"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteTestimonial(parseInt(btn.dataset.index)));
+    });
+    container.querySelectorAll('[data-action="edit-testimonial"]').forEach(btn => {
+        btn.addEventListener('click', () => editTestimonial(parseInt(btn.dataset.index)));
+    });
 }
 
 function renderFAQ() {
@@ -420,13 +495,20 @@ function renderFAQ() {
             <div class="item-card-header">
                 <div class="item-card-title">Q: ${item.question}</div>
                 <div class="item-card-actions">
-                    <button class="btn-icon" onclick="editFAQ(${index})">✏️</button>
-                    <button class="btn-icon" onclick="deleteFAQ(${index})">🗑️</button>
+                    <button class="btn-icon" data-action="edit-faq" data-index="${index}">✏️</button>
+                    <button class="btn-icon" data-action="delete-faq" data-index="${index}">🗑️</button>
                 </div>
             </div>
             <p><strong>A:</strong> ${item.answer}</p>
         </div>
     `).join('');
+    
+    container.querySelectorAll('[data-action="delete-faq"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteFAQ(parseInt(btn.dataset.index)));
+    });
+    container.querySelectorAll('[data-action="edit-faq"]').forEach(btn => {
+        btn.addEventListener('click', () => editFAQ(parseInt(btn.dataset.index)));
+    });
 }
 
 function renderBlogPosts() {
@@ -441,14 +523,21 @@ function renderBlogPosts() {
             <div class="item-card-header">
                 <div class="item-card-title">${post.title}</div>
                 <div class="item-card-actions">
-                    <button class="btn-icon" onclick="editBlogPost(${index})">✏️</button>
-                    <button class="btn-icon" onclick="deleteBlogPost(${index})">🗑️</button>
+                    <button class="btn-icon" data-action="edit-post" data-index="${index}">✏️</button>
+                    <button class="btn-icon" data-action="delete-post" data-index="${index}">🗑️</button>
                 </div>
             </div>
             <p>${post.excerpt}</p>
             <p><strong>${post.category}</strong> • ${post.readTime} min read • ${post.date}</p>
         </div>
     `).join('');
+    
+    container.querySelectorAll('[data-action="delete-post"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteBlogPost(parseInt(btn.dataset.index)));
+    });
+    container.querySelectorAll('[data-action="edit-post"]').forEach(btn => {
+        btn.addEventListener('click', () => editBlogPost(parseInt(btn.dataset.index)));
+    });
 }
 
 function renderCategories() {
@@ -463,65 +552,83 @@ function renderCategories() {
             <div class="item-card-header">
                 <div class="item-card-title">${cat.icon} ${cat.name}</div>
                 <div class="item-card-actions">
-                    <button class="btn-icon" onclick="deleteCategory(${index})">🗑️</button>
+                    <button class="btn-icon" data-action="delete-category" data-index="${index}">🗑️</button>
                 </div>
             </div>
             <p>Slug: ${cat.slug}</p>
         </div>
     `).join('');
+    
+    container.querySelectorAll('[data-action="delete-category"]').forEach(btn => {
+        btn.addEventListener('click', () => deleteCategory(parseInt(btn.dataset.index)));
+    });
 }
 
-// Placeholder functions (will implement modal dialogs in next version)
-window.editService = (index) => alert('Edit Service: Feature coming soon! For now, regenerate config and edit manually.');
-window.deleteService = (index) => {
+// Edit/Delete functions
+function editService(index) {
+    showToast('Edit feature coming soon! Use PUBLISH button to regenerate config and edit manually.', 'error');
+}
+
+function deleteService(index) {
     if (confirm('Delete this service?')) {
         config.services.splice(index, 1);
         renderServices();
-        showToast('Service deleted', 'success');
+        showToast('Service deleted. Click PUBLISH to apply changes.', 'success');
     }
-};
+}
 
-window.editTestimonial = (index) => alert('Edit Testimonial: Feature coming soon!');
-window.deleteTestimonial = (index) => {
+function editTestimonial(index) {
+    showToast('Edit feature coming soon!', 'error');
+}
+
+function deleteTestimonial(index) {
     if (confirm('Delete this testimonial?')) {
         config.testimonials.splice(index, 1);
         renderTestimonials();
-        showToast('Testimonial deleted', 'success');
+        showToast('Testimonial deleted. Click PUBLISH to apply.', 'success');
     }
-};
+}
 
-window.editFAQ = (index) => alert('Edit FAQ: Feature coming soon!');
-window.deleteFAQ = (index) => {
+function editFAQ(index) {
+    showToast('Edit feature coming soon!', 'error');
+}
+
+function deleteFAQ(index) {
     if (confirm('Delete this FAQ?')) {
         config.faq.splice(index, 1);
         renderFAQ();
-        showToast('FAQ deleted', 'success');
+        showToast('FAQ deleted. Click PUBLISH to apply.', 'success');
     }
-};
+}
 
-window.editBlogPost = (index) => alert('Edit Blog Post: Feature coming soon!');
-window.deleteBlogPost = (index) => {
+function editBlogPost(index) {
+    showToast('Edit feature coming soon!', 'error');
+}
+
+function deleteBlogPost(index) {
     if (confirm('Delete this blog post?')) {
         config.blog.posts.splice(index, 1);
         renderBlogPosts();
-        showToast('Blog post deleted', 'success');
+        showToast('Post deleted. Click PUBLISH to apply.', 'success');
     }
-};
+}
 
-window.deleteCategory = (index) => {
+function deleteCategory(index) {
     if (confirm('Delete this category?')) {
         config.blog.categories.splice(index, 1);
         renderCategories();
-        showToast('Category deleted', 'success');
+        showToast('Category deleted. Click PUBLISH to apply.', 'success');
     }
-};
+}
 
 // ═══════════════════════════════════════════════════════════════════
-// GENERATE CONFIG FILES
+// PUBLISH CHANGES (MAIN BUTTON)
 // ═══════════════════════════════════════════════════════════════════
 
-function generateConfigFiles() {
-    saveFormData();
+function publishChanges() {
+    if (!confirm('🚀 PUBLISH CHANGES?\n\nThis will generate the config files with all your changes.\n\nYou will need to copy and paste the code into your site-config.js and blog-config.js files.')) {
+        return;
+    }
     
     const siteConfigCode = generateSiteConfigJS();
     const blogConfigCode = generateBlogConfigJS();
@@ -529,58 +636,203 @@ function generateConfigFiles() {
     // Display in export section
     const container = document.getElementById('generatedCode');
     container.innerHTML = `
+        <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+            <h3 style="color: #16a34a; margin: 0 0 10px 0;">✅ Changes Published Successfully!</h3>
+            <p style="color: #15803d; margin: 0;">Copy the code blocks below and paste into your config files.</p>
+        </div>
+        
         <div class="code-block">
             <div class="code-header">
-                <span class="code-label">site-config.js</span>
-                <button class="copy-btn" onclick="copyToClipboard('siteConfig')">📋 Copy</button>
+                <span class="code-label">📄 site-config.js</span>
+                <button class="copy-btn" onclick="copyCode('siteConfig')">📋 Copy Code</button>
             </div>
             <pre id="siteConfig">${escapeHtml(siteConfigCode)}</pre>
         </div>
         
         <div class="code-block">
             <div class="code-header">
-                <span class="code-label">blog-config.js</span>
-                <button class="copy-btn" onclick="copyToClipboard('blogConfig')">📋 Copy</button>
+                <span class="code-label">📄 blog-config.js</span>
+                <button class="copy-btn" onclick="copyCode('blogConfig')">📋 Copy Code</button>
             </div>
             <pre id="blogConfig">${escapeHtml(blogConfigCode)}</pre>
+        </div>
+        
+        <div style="background: #eff6ff; border: 2px solid #3b82f6; border-radius: 8px; padding: 20px; margin-top: 20px;">
+            <h4 style="color: #1d4ed8; margin: 0 0 10px 0;">📝 Next Steps:</h4>
+            <ol style="color: #1e40af; margin: 0; padding-left: 20px;">
+                <li>Click "Copy Code" on each section</li>
+                <li>Open <code>site-config.js</code> and <code>blog-config.js</code> in your editor</li>
+                <li>Replace the entire file content with the copied code</li>
+                <li>Save the files</li>
+                <li>Refresh your website - changes are live! 🎉</li>
+            </ol>
         </div>
     `;
     
     // Switch to export section
     document.querySelector('[data-section="export"]').click();
     
-    showToast('Config files generated! Copy and paste into your files.', 'success');
+    showToast('✅ Config files generated! Copy and paste into your files.', 'success');
 }
 
 function generateSiteConfigJS() {
-    return `// Auto-generated by Admin Dashboard
-const SITE_CONFIG = ${JSON.stringify(config, null, 4)};
+    // Build complete config object
+    const fullConfig = {
+        contact: config.contact,
+        colors: config.colors,
+        images: config.images,
+        hero: config.hero,
+        about: SITE_CONFIG.about || {},
+        services: config.services,
+        stats: config.stats,
+        testimonials: config.testimonials,
+        faq: config.faq,
+        hours: SITE_CONFIG.hours || {},
+        footerLinks: SITE_CONFIG.footerLinks || {},
+        settings: config.settings
+    };
+    
+    return `// ═══════════════════════════════════════════════════════════════════
+// 🎨 THERAPIST WEBSITE CONFIGURATION
+// Generated by Admin Dashboard - ${new Date().toLocaleString()}
+// ═══════════════════════════════════════════════════════════════════
 
-// Apply theme colors
+const SITE_CONFIG = ${JSON.stringify(fullConfig, null, 4)};
+
+// ═══════════════════════════════════════════════════════════════════
+// 🎨 APPLY THEME COLORS
+// ═══════════════════════════════════════════════════════════════════
+
 function applyTheme() {
     const root = document.documentElement;
     const colors = SITE_CONFIG.colors;
     
-    root.style.setProperty('--primary-color', colors.primary);
-    root.style.setProperty('--primary-dark', colors.primaryDark);
-    root.style.setProperty('--secondary-color', colors.secondary);
-    root.style.setProperty('--secondary-dark', colors.secondaryDark);
+    // Check if admin dashboard has set preview colors via localStorage
+    const previewColors = localStorage.getItem('previewColors');
+    const activeColors = previewColors ? JSON.parse(previewColors) : colors;
+    
+    root.style.setProperty('--primary-color', activeColors.primary);
+    root.style.setProperty('--primary-dark', activeColors.primaryDark);
+    root.style.setProperty('--secondary-color', activeColors.secondary);
+    root.style.setProperty('--secondary-dark', activeColors.secondaryDark);
+    root.style.setProperty('--text-dark', colors.textDark);
+    root.style.setProperty('--text-muted', colors.textMuted);
+    root.style.setProperty('--text-light', colors.textLight);
+    root.style.setProperty('--bg-light', colors.bgLight);
+    root.style.setProperty('--bg-white', colors.bgWhite);
+    root.style.setProperty('--bg-dark', colors.bgDark);
+    root.style.setProperty('--success-color', colors.success);
+    root.style.setProperty('--error-color', colors.error);
+    root.style.setProperty('--gradient-start', colors.gradientStart);
+    root.style.setProperty('--gradient-end', colors.gradientEnd);
 }
 
+// Initialize on page load
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', applyTheme);
 } else {
     applyTheme();
+}
+
+// Export for use in other files
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = SITE_CONFIG;
 }`;
 }
 
 function generateBlogConfigJS() {
-    return `// Auto-generated by Admin Dashboard
+    return `// ═══════════════════════════════════════════════════════════════════
+// 📝 BLOG CONFIGURATION
+// Generated by Admin Dashboard - ${new Date().toLocaleString()}
+// ═══════════════════════════════════════════════════════════════════
+
 const BLOG_POSTS = ${JSON.stringify(config.blog.posts, null, 4)};
 
 const BLOG_CATEGORIES = ${JSON.stringify(config.blog.categories, null, 4)};
 
-// Helper functions remain the same...`;
+// Helper functions
+function getAllPosts() {
+    return BLOG_POSTS;
+}
+
+function getFeaturedPosts() {
+    return BLOG_POSTS.filter(post => post.featured);
+}
+
+function getPostsByCategory(category) {
+    if (category === 'all') return BLOG_POSTS;
+    return BLOG_POSTS.filter(post => post.category === category);
+}
+
+function getHomepagePosts() {
+    return BLOG_POSTS.filter(post => post.showOnHomepage).slice(0, 3);
+}
+
+function getRelatedPosts(currentPostId, category, limit = 3) {
+    return BLOG_POSTS
+        .filter(post => post.id !== currentPostId && post.category === category)
+        .slice(0, limit);
+}
+
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+}
+
+function generateBlogCard(post) {
+    return \`
+        <article class="blog-card">
+            <img src="\${post.image}" alt="\${post.title}">
+            <div class="blog-card-content">
+                <span class="blog-category">\${post.category}</span>
+                <h3>\${post.title}</h3>
+                <p>\${post.excerpt}</p>
+                <div class="blog-meta">
+                    <span>👤 \${post.author}</span>
+                    <span>📖 \${post.readTime} min read</span>
+                    <span>📅 \${post.date}</span>
+                </div>
+                <a href="\${post.filename}" class="read-more">Read More →</a>
+            </div>
+        </article>
+    \`;
+}
+
+// Auto-initialize on blog page
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBlog);
+} else {
+    initBlog();
+}
+
+function initBlog() {
+    const categoryFilters = document.getElementById('categoryFilters');
+    const blogGrid = document.getElementById('blogGrid');
+    
+    if (!categoryFilters || !blogGrid) return;
+    
+    // Render category buttons
+    categoryFilters.innerHTML = BLOG_CATEGORIES.map(cat => 
+        \`<button class="category-btn \${cat.slug === 'all' ? 'active' : ''}" data-category="\${cat.slug}">
+            \${cat.icon} \${cat.name}
+        </button>\`
+    ).join('');
+    
+    // Render all posts initially
+    blogGrid.innerHTML = BLOG_POSTS.map(post => generateBlogCard(post)).join('');
+    
+    // Add filter functionality
+    categoryFilters.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryFilters.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const category = btn.dataset.category;
+            const filteredPosts = getPostsByCategory(category);
+            blogGrid.innerHTML = filteredPosts.map(post => generateBlogCard(post)).join('');
+        });
+    });
+}`;
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -687,13 +939,16 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-window.copyToClipboard = function(elementId) {
+function copyCode(elementId) {
     const element = document.getElementById(elementId);
     const text = element.textContent;
     
     navigator.clipboard.writeText(text).then(() => {
-        showToast('Copied to clipboard!', 'success');
+        showToast('✅ Copied to clipboard!', 'success');
     }).catch(() => {
-        showToast('Failed to copy', 'error');
+        showToast('❌ Failed to copy', 'error');
     });
-};
+}
+
+// Make copyCode available globally for onclick
+window.copyCode = copyCode;
