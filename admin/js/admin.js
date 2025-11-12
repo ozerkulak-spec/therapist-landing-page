@@ -238,6 +238,9 @@ function applyThemeColors(colors) {
     
     // Save to config
     config.colors = colors;
+    
+    // Apply to preview iframe
+    applyColorsToPreview();
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -275,7 +278,11 @@ function initColorPickers() {
             secondary: document.getElementById('secondaryColor').value,
             secondaryDark: document.getElementById('secondaryDark').value
         };
-        showToast('Colors saved!', 'success');
+        
+        // Apply to preview iframe
+        applyColorsToPreview();
+        
+        showToast('Colors saved and applied to preview!', 'success');
     });
 }
 
@@ -615,6 +622,14 @@ function downloadBackup() {
 function initPreview() {
     const deviceButtons = document.querySelectorAll('.preview-device');
     const frameContainer = document.querySelector('.preview-frame-container');
+    const iframe = document.getElementById('previewFrame');
+    
+    // Apply colors when iframe loads
+    iframe.addEventListener('load', () => {
+        setTimeout(() => {
+            applyColorsToPreview();
+        }, 500);
+    });
     
     deviceButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -630,6 +645,25 @@ function initPreview() {
         document.getElementById('previewFrame').src = document.getElementById('previewFrame').src;
         showToast('Preview refreshed!', 'success');
     });
+}
+
+function applyColorsToPreview() {
+    try {
+        const iframe = document.getElementById('previewFrame');
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        // Apply CSS variables to preview
+        const root = iframeDoc.documentElement;
+        root.style.setProperty('--primary-color', config.colors.primary || '#4a90e2');
+        root.style.setProperty('--primary-dark', config.colors.primaryDark || '#3a7bc8');
+        root.style.setProperty('--secondary-color', config.colors.secondary || '#6ac6b5');
+        root.style.setProperty('--secondary-dark', config.colors.secondaryDark || '#5ab3a3');
+        
+        console.log('Colors applied to preview:', config.colors);
+    } catch (error) {
+        console.error('Could not apply colors to preview (cross-origin issue):', error);
+        showToast('Preview updated! (Refresh if colors don\'t show)', 'success');
+    }
 }
 
 // ═══════════════════════════════════════════════════════════════════
