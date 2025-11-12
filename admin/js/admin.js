@@ -26,35 +26,28 @@ let config = {
 // ═══════════════════════════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Admin Dashboard Loaded');
+    console.log('🚀 Admin Dashboard Initializing...');
     
     // Load existing config if available
     loadExistingConfig();
     
-    // Initialize navigation
+    // Initialize all modules
     initNavigation();
-    
-    // Initialize theme presets
     initThemePresets();
-    
-    // Initialize color pickers
     initColorPickers();
-    
-    // Initialize form handlers
     initFormHandlers();
-    
-    // Initialize save buttons for each section
     initSaveButtons();
-    
-    // Initialize publish button (MAIN BUTTON)
-    document.getElementById('generateConfig').addEventListener('click', publishChanges);
-    
-    // Initialize import/export
+    initBlogManagement();
     initImportExport();
-    
-    // Initialize preview
     initPreview();
     
+    // Initialize publish button (MAIN BUTTON)
+    const publishBtn = document.getElementById('generateConfig');
+    if (publishBtn) {
+        publishBtn.addEventListener('click', publishChanges);
+    }
+    
+    console.log('✅ Dashboard initialized successfully');
     showToast('Dashboard loaded successfully!', 'success');
 });
 
@@ -96,58 +89,67 @@ function loadExistingConfig() {
 }
 
 function populateFormFields() {
+    // Helper function for safe value setting
+    const setValue = (id, value) => {
+        const el = document.getElementById(id);
+        if (el && value !== undefined && value !== null) {
+            el.value = value;
+        }
+    };
+    
+    const setChecked = (id, value) => {
+        const el = document.getElementById(id);
+        if (el && value !== undefined) {
+            el.checked = value;
+        }
+    };
+    
     // Colors
-    if (config.colors.primary) {
-        document.getElementById('primaryColor').value = config.colors.primary;
-        document.getElementById('primaryColorText').value = config.colors.primary;
-    }
-    if (config.colors.primaryDark) {
-        document.getElementById('primaryDark').value = config.colors.primaryDark;
-        document.getElementById('primaryDarkText').value = config.colors.primaryDark;
-    }
-    if (config.colors.secondary) {
-        document.getElementById('secondaryColor').value = config.colors.secondary;
-        document.getElementById('secondaryColorText').value = config.colors.secondary;
-    }
-    if (config.colors.secondaryDark) {
-        document.getElementById('secondaryDark').value = config.colors.secondaryDark;
-        document.getElementById('secondaryDarkText').value = config.colors.secondaryDark;
-    }
+    setValue('primaryColor', config.colors.primary);
+    setValue('primaryColorText', config.colors.primary);
+    setValue('primaryDark', config.colors.primaryDark);
+    setValue('primaryDarkText', config.colors.primaryDark);
+    setValue('secondaryColor', config.colors.secondary);
+    setValue('secondaryColorText', config.colors.secondary);
+    setValue('secondaryDark', config.colors.secondaryDark);
+    setValue('secondaryDarkText', config.colors.secondaryDark);
     
     // Contact
-    if (config.contact.name) document.getElementById('contactName').value = config.contact.name;
-    if (config.contact.title) document.getElementById('contactTitle').value = config.contact.title;
-    if (config.contact.phone) document.getElementById('contactPhone').value = config.contact.phone;
-    if (config.contact.countryCode) document.getElementById('contactCountryCode').value = config.contact.countryCode;
-    if (config.contact.email) document.getElementById('contactEmail').value = config.contact.email;
-    if (config.contact.location) document.getElementById('contactLocation').value = config.contact.location;
+    setValue('contactName', config.contact.name);
+    setValue('contactTitle', config.contact.title);
+    setValue('contactPhone', config.contact.phone);
+    setValue('contactCountryCode', config.contact.countryCode);
+    setValue('contactEmail', config.contact.email);
+    setValue('contactLocation', config.contact.location);
     
     // Social
     if (config.contact.social) {
-        if (config.contact.social.facebook) document.getElementById('socialFacebook').value = config.contact.social.facebook;
-        if (config.contact.social.instagram) document.getElementById('socialInstagram').value = config.contact.social.instagram;
-        if (config.contact.social.linkedin) document.getElementById('socialLinkedin').value = config.contact.social.linkedin;
-        if (config.contact.social.twitter) document.getElementById('socialTwitter').value = config.contact.social.twitter;
+        setValue('socialFacebook', config.contact.social.facebook);
+        setValue('socialInstagram', config.contact.social.instagram);
+        setValue('socialLinkedin', config.contact.social.linkedin);
+        setValue('socialTwitter', config.contact.social.twitter);
     }
     
     // Hero
-    if (config.hero.title) document.getElementById('heroTitle').value = config.hero.title;
-    if (config.hero.subtitle) document.getElementById('heroSubtitle').value = config.hero.subtitle;
-    if (config.hero.description) document.getElementById('heroDescription').value = config.hero.description;
+    setValue('heroTitle', config.hero.title);
+    setValue('heroSubtitle', config.hero.subtitle);
+    setValue('heroDescription', config.hero.description);
     if (config.hero.buttons) {
-        if (config.hero.buttons.primary) document.getElementById('heroBtnPrimaryText').value = config.hero.buttons.primary.text;
-        if (config.hero.buttons.secondary) document.getElementById('heroBtnSecondaryText').value = config.hero.buttons.secondary.text;
+        setValue('heroBtnPrimaryText', config.hero.buttons.primary?.text);
+        setValue('heroBtnSecondaryText', config.hero.buttons.secondary?.text);
     }
     
     // Images
-    if (config.images.hero) document.getElementById('imageHero').value = config.images.hero;
-    if (config.images.about) document.getElementById('imageAbout').value = config.images.about;
+    setValue('imageHero', config.images.hero);
+    setValue('imageAbout', config.images.about);
     
     // Settings
-    if (config.settings.showStats !== undefined) document.getElementById('showStats').checked = config.settings.showStats;
-    if (config.settings.showTestimonials !== undefined) document.getElementById('showTestimonials').checked = config.settings.showTestimonials;
-    if (config.settings.showFAQ !== undefined) document.getElementById('showFAQ').checked = config.settings.showFAQ;
-    if (config.settings.showBlog !== undefined) document.getElementById('showBlog').checked = config.settings.showBlog;
+    setChecked('showStats', config.settings.showStats);
+    setChecked('showTestimonials', config.settings.showTestimonials);
+    setChecked('showFAQ', config.settings.showFAQ);
+    setChecked('showBlog', config.settings.showBlog);
+    
+    console.log('✅ Form fields populated');
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -286,125 +288,204 @@ function initFormHandlers() {
 }
 
 function initSaveButtons() {
-    // Save Colors button
-    document.getElementById('applyColors').addEventListener('click', saveColors);
+    // Save Colors button (already exists in HTML)
+    const applyColorsBtn = document.getElementById('applyColors');
+    if (applyColorsBtn) {
+        applyColorsBtn.addEventListener('click', saveColors);
+    }
     
-    // Save Contact button
-    const saveContactBtn = document.createElement('button');
-    saveContactBtn.className = 'btn-primary btn-block';
-    saveContactBtn.textContent = '💾 Save Contact Info';
-    saveContactBtn.style.marginTop = '20px';
+    // Save Contact button - check if already exists
+    let saveContactBtn = document.querySelector('#saveContactBtn');
+    if (!saveContactBtn) {
+        saveContactBtn = document.createElement('button');
+        saveContactBtn.id = 'saveContactBtn';
+        saveContactBtn.className = 'btn-primary btn-block';
+        saveContactBtn.textContent = '💾 Save Contact Info';
+        saveContactBtn.style.marginTop = '20px';
+        const contactCard = document.querySelector('#section-content .card');
+        if (contactCard) contactCard.appendChild(saveContactBtn);
+    }
     saveContactBtn.onclick = saveContactInfo;
-    document.querySelector('#section-content .card').appendChild(saveContactBtn);
     
     // Save Hero button
-    const saveHeroBtn = document.createElement('button');
-    saveHeroBtn.className = 'btn-primary btn-block';
-    saveHeroBtn.textContent = '💾 Save Hero Section';
-    saveHeroBtn.style.marginTop = '20px';
+    let saveHeroBtn = document.querySelector('#saveHeroBtn');
+    if (!saveHeroBtn) {
+        saveHeroBtn = document.createElement('button');
+        saveHeroBtn.id = 'saveHeroBtn';
+        saveHeroBtn.className = 'btn-primary btn-block';
+        saveHeroBtn.textContent = '💾 Save Hero Section';
+        saveHeroBtn.style.marginTop = '20px';
+        const heroCards = document.querySelectorAll('#section-content .card');
+        if (heroCards[1]) heroCards[1].appendChild(saveHeroBtn);
+    }
     saveHeroBtn.onclick = saveHeroSection;
-    document.querySelectorAll('#section-content .card')[1].appendChild(saveHeroBtn);
     
     // Save Images button
-    const saveImagesBtn = document.createElement('button');
-    saveImagesBtn.className = 'btn-primary btn-block';
-    saveImagesBtn.textContent = '💾 Save Images';
-    saveImagesBtn.style.marginTop = '20px';
+    let saveImagesBtn = document.querySelector('#saveImagesBtn');
+    if (!saveImagesBtn) {
+        saveImagesBtn = document.createElement('button');
+        saveImagesBtn.id = 'saveImagesBtn';
+        saveImagesBtn.className = 'btn-primary btn-block';
+        saveImagesBtn.textContent = '💾 Save Images';
+        saveImagesBtn.style.marginTop = '20px';
+        const imagesCard = document.querySelector('#section-images .card');
+        if (imagesCard) imagesCard.appendChild(saveImagesBtn);
+    }
     saveImagesBtn.onclick = saveImages;
-    document.querySelector('#section-images .card').appendChild(saveImagesBtn);
     
     // Save Settings button
-    const saveSettingsBtn = document.createElement('button');
-    saveSettingsBtn.className = 'btn-primary btn-block';
-    saveSettingsBtn.textContent = '💾 Save Settings';
-    saveSettingsBtn.style.marginTop = '20px';
+    let saveSettingsBtn = document.querySelector('#saveSettingsBtn');
+    if (!saveSettingsBtn) {
+        saveSettingsBtn = document.createElement('button');
+        saveSettingsBtn.id = 'saveSettingsBtn';
+        saveSettingsBtn.className = 'btn-primary btn-block';
+        saveSettingsBtn.textContent = '💾 Save Settings';
+        saveSettingsBtn.style.marginTop = '20px';
+        const settingsCard = document.querySelector('#section-settings .card');
+        if (settingsCard) settingsCard.appendChild(saveSettingsBtn);
+    }
     saveSettingsBtn.onclick = saveSettings;
-    document.querySelector('#section-settings .card').appendChild(saveSettingsBtn);
+    
+    console.log('✅ Save buttons initialized');
 }
 
 function saveColors() {
+    const primaryEl = document.getElementById('primaryColor');
+    const primaryDarkEl = document.getElementById('primaryDark');
+    const secondaryEl = document.getElementById('secondaryColor');
+    const secondaryDarkEl = document.getElementById('secondaryDark');
+    
+    if (!primaryEl || !secondaryEl) {
+        showToast('❌ Color pickers not found!', 'error');
+        return;
+    }
+    
     config.colors = {
-        primary: document.getElementById('primaryColor').value,
-        primaryDark: document.getElementById('primaryDark').value,
-        secondary: document.getElementById('secondaryColor').value,
-        secondaryDark: document.getElementById('secondaryDark').value
+        primary: primaryEl.value,
+        primaryDark: primaryDarkEl ? primaryDarkEl.value : primaryEl.value,
+        secondary: secondaryEl.value,
+        secondaryDark: secondaryDarkEl ? secondaryDarkEl.value : secondaryEl.value
     };
     
     // Apply to preview iframe
     applyColorsToPreview();
     
+    console.log('Colors saved:', config.colors);
     showToast('✅ Colors saved! Click PUBLISH to apply to website.', 'success');
 }
 
 function saveContactInfo() {
+    const nameEl = document.getElementById('contactName');
+    const titleEl = document.getElementById('contactTitle');
+    const phoneEl = document.getElementById('contactPhone');
+    const countryCodeEl = document.getElementById('contactCountryCode');
+    const emailEl = document.getElementById('contactEmail');
+    const locationEl = document.getElementById('contactLocation');
+    
+    if (!nameEl || !emailEl) {
+        showToast('❌ Contact form fields not found!', 'error');
+        return;
+    }
+    
     config.contact = {
-        name: document.getElementById('contactName').value,
-        title: document.getElementById('contactTitle').value,
-        phone: document.getElementById('contactPhone').value,
-        countryCode: document.getElementById('contactCountryCode').value,
-        email: document.getElementById('contactEmail').value,
-        location: document.getElementById('contactLocation').value,
+        name: nameEl.value,
+        title: titleEl ? titleEl.value : '',
+        phone: phoneEl ? phoneEl.value : '',
+        countryCode: countryCodeEl ? countryCodeEl.value : '1',
+        email: emailEl.value,
+        location: locationEl ? locationEl.value : '',
         social: {
-            facebook: document.getElementById('socialFacebook').value,
-            instagram: document.getElementById('socialInstagram').value,
-            linkedin: document.getElementById('socialLinkedin').value,
-            twitter: document.getElementById('socialTwitter').value
+            facebook: document.getElementById('socialFacebook')?.value || '',
+            instagram: document.getElementById('socialInstagram')?.value || '',
+            linkedin: document.getElementById('socialLinkedin')?.value || '',
+            twitter: document.getElementById('socialTwitter')?.value || ''
         }
     };
+    
+    console.log('Contact saved:', config.contact);
     showToast('✅ Contact info saved! Click PUBLISH to apply.', 'success');
 }
 
 function saveHeroSection() {
+    const titleEl = document.getElementById('heroTitle');
+    const subtitleEl = document.getElementById('heroSubtitle');
+    const descriptionEl = document.getElementById('heroDescription');
+    const btn1El = document.getElementById('heroBtnPrimaryText');
+    const btn2El = document.getElementById('heroBtnSecondaryText');
+    
+    if (!titleEl) {
+        showToast('❌ Hero form fields not found!', 'error');
+        return;
+    }
+    
     config.hero = {
-        title: document.getElementById('heroTitle').value,
-        subtitle: document.getElementById('heroSubtitle').value,
-        description: document.getElementById('heroDescription').value,
+        title: titleEl.value,
+        subtitle: subtitleEl ? subtitleEl.value : '',
+        description: descriptionEl ? descriptionEl.value : '',
         buttons: {
             primary: {
-                text: document.getElementById('heroBtnPrimaryText').value,
+                text: btn1El ? btn1El.value : 'Book Appointment',
                 link: '#contact',
                 icon: '📅'
             },
             secondary: {
-                text: document.getElementById('heroBtnSecondaryText').value,
+                text: btn2El ? btn2El.value : 'Learn More',
                 link: '#about',
                 icon: 'ℹ️'
             }
         }
     };
+    
+    console.log('Hero saved:', config.hero);
     showToast('✅ Hero section saved! Click PUBLISH to apply.', 'success');
 }
 
 function saveImages() {
+    const heroImgEl = document.getElementById('imageHero');
+    const aboutImgEl = document.getElementById('imageAbout');
+    
+    if (!heroImgEl) {
+        showToast('❌ Image form fields not found!', 'error');
+        return;
+    }
+    
     config.images = {
-        hero: document.getElementById('imageHero').value,
-        about: document.getElementById('imageAbout').value
+        hero: heroImgEl.value,
+        about: aboutImgEl ? aboutImgEl.value : ''
     };
     
     // Show previews
     const heroPreview = document.getElementById('heroImagePreview');
     const aboutPreview = document.getElementById('aboutImagePreview');
     
-    if (config.images.hero) {
+    if (config.images.hero && heroPreview) {
         heroPreview.innerHTML = `<img src="${config.images.hero}" alt="Hero" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">`;
         heroPreview.classList.add('show');
     }
     
-    if (config.images.about) {
+    if (config.images.about && aboutPreview) {
         aboutPreview.innerHTML = `<img src="${config.images.about}" alt="About" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">`;
         aboutPreview.classList.add('show');
     }
     
+    console.log('Images saved:', config.images);
     showToast('✅ Images saved! Click PUBLISH to apply.', 'success');
 }
 
 function saveSettings() {
+    const statsEl = document.getElementById('showStats');
+    const testimonialsEl = document.getElementById('showTestimonials');
+    const faqEl = document.getElementById('showFAQ');
+    const blogEl = document.getElementById('showBlog');
+    
     config.settings = {
-        showStats: document.getElementById('showStats').checked,
-        showTestimonials: document.getElementById('showTestimonials').checked,
-        showFAQ: document.getElementById('showFAQ').checked,
-        showBlog: document.getElementById('showBlog').checked
+        showStats: statsEl ? statsEl.checked : true,
+        showTestimonials: testimonialsEl ? testimonialsEl.checked : true,
+        showFAQ: faqEl ? faqEl.checked : true,
+        showBlog: blogEl ? blogEl.checked : true
     };
+    
+    console.log('Settings saved:', config.settings);
     showToast('✅ Settings saved! Click PUBLISH to apply.', 'success');
 }
 
@@ -958,8 +1039,22 @@ window.copyCode = copyCode;
 // ═══════════════════════════════════════════════════════════════════
 
 function initBlogManagement() {
-    document.getElementById('addBlogPost').addEventListener('click', openAddBlogModal);
-    document.getElementById('addCategory').addEventListener('click', openAddCategoryModal);
+    const addBlogBtn = document.getElementById('addBlogPost');
+    const addCategoryBtn = document.getElementById('addCategory');
+    
+    if (addBlogBtn) {
+        addBlogBtn.addEventListener('click', openAddBlogModal);
+        console.log('✅ Add Blog Post button initialized');
+    } else {
+        console.warn('⚠️ Add Blog Post button not found');
+    }
+    
+    if (addCategoryBtn) {
+        addCategoryBtn.addEventListener('click', openAddCategoryModal);
+        console.log('✅ Add Category button initialized');
+    } else {
+        console.warn('⚠️ Add Category button not found');
+    }
 }
 
 // Blog Post Modal Functions
@@ -1105,8 +1200,3 @@ window.saveCategory = function() {
 function editBlogPost(index) {
     openEditBlogModal(index);
 }
-
-// Initialize blog management on load
-document.addEventListener('DOMContentLoaded', function() {
-    initBlogManagement();
-});
