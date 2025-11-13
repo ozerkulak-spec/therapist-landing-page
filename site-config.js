@@ -333,10 +333,18 @@ const SITE_CONFIG = {
 function applyTheme() {
     const root = document.documentElement;
     const colors = SITE_CONFIG.colors;
-    
-    // Check if admin dashboard has set preview colors via localStorage
-    const previewColors = localStorage.getItem('previewColors');
-    const activeColors = previewColors ? JSON.parse(previewColors) : colors;
+
+    // Only allow color preview overrides on admin pages
+    const isAdmin = typeof window !== 'undefined' && window.location && window.location.pathname.includes('/admin/');
+    let activeColors = colors;
+    if (isAdmin) {
+        try {
+            const previewColors = localStorage.getItem('previewColors');
+            if (previewColors) activeColors = JSON.parse(previewColors);
+        } catch (e) {
+            // ignore parse errors and fall back to configured colors
+        }
+    }
     
     root.style.setProperty('--primary-color', activeColors.primary);
     root.style.setProperty('--primary-dark', activeColors.primaryDark);
