@@ -121,3 +121,27 @@ body { letter-spacing: 0.1px; -webkit-font-smoothing: antialiased; }
   .hero-content { grid-template-columns: 1fr; gap: 36px; }
   .hiw-grid { grid-template-columns: 1fr; }
 }
+
+/* Appointment CTA band */
+.cta-band {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--primary-color) 92%, #fff), color-mix(in srgb, var(--secondary-color) 85%, #fff));
+  color: var(--text-light);
+  padding: 30px 0;
+}
+.cta-band-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.cta-band h3 { font-size: 1.5rem; margin-bottom: 4px; }
+.cta-band p { opacity: .95; }
+.cta-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.cta-actions .cta-button.secondary { border-color: rgba(255,255,255,.35); color: var(--text-light); }
+.cta-actions .cta-button.secondary:hover { background: rgba(255,255,255,.08); }
+@media (max-width: 900px) { .cta-band-inner { flex-direction: column; align-items: flex-start; } }
+
+/* Blog card polish */
+.blog-grid .blog-card {
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, #000 0%);
+  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.blog-grid .blog-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.10); }
