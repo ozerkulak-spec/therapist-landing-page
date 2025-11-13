@@ -4,20 +4,20 @@
 
 :root {
     /* Default colors (will be overridden by site-config.js via CSS variables) */
-    --primary-color: #4a90e2; /* default; will be overridden by admin previews */
-    --primary-dark: #3a7bc8;
-    --secondary-color: #6ac6b5;
-    --secondary-dark: #5ab3a3;
+    --primary-color: #E9856B; /* warm coral default; overridden by site-config.js */
+    --primary-dark: #D86E52;
+    --secondary-color: #F2CDA0; /* warm sand */
+    --secondary-dark: #E8BD86;
     --text-dark: #2c3e50;
     --text-muted: #666666;
     --text-light: #ffffff;
-    --bg-light: #f8f9fa;
+    --bg-light: #FFF8F3; /* cozy off-white */
     --bg-white: #ffffff;
     --bg-dark: #2c3e50;
     --success-color: #28a745;
     --error-color: #dc3545;
-    --gradient-start: #4a90e2;
-    --gradient-end: #6ac6b5;
+    --gradient-start: #E9856B;
+    --gradient-end: #F2CDA0;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -76,7 +76,7 @@ body {
 
 .nav-menu a {
     text-decoration: none;
-    color: #333;
+    color: var(--text-dark);
     font-weight: 500;
     font-size: 0.95rem;
     transition: color 0.3s ease;
@@ -99,7 +99,7 @@ body {
 
 .nav-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+    box-shadow: 0 5px 15px color-mix(in srgb, var(--primary-color) 40%, transparent);
 }
 
 .mobile-menu-toggle {
@@ -136,14 +136,14 @@ body {
     position: fixed;
     bottom: 30px;
     left: 30px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #357abd 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     width: 60px;
     height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.5);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--primary-color) 50%, transparent);
     z-index: 999;
     transition: all 0.3s ease;
     animation: pulse-phone 2s infinite;
@@ -151,15 +151,15 @@ body {
 
 .phone-float:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.7);
+    box-shadow: 0 6px 25px color-mix(in srgb, var(--primary-color) 70%, transparent);
 }
 
 @keyframes pulse-phone {
     0%, 100% {
-        box-shadow: 0 4px 20px rgba(74, 144, 226, 0.5);
+        box-shadow: 0 4px 20px color-mix(in srgb, var(--primary-color) 50%, transparent);
     }
     50% {
-        box-shadow: 0 4px 30px rgba(74, 144, 226, 0.8);
+        box-shadow: 0 4px 30px color-mix(in srgb, var(--primary-color) 80%, transparent);
     }
 }
 
@@ -294,7 +294,7 @@ body {
 
 .about-section {
     padding: 100px 20px;
-    background-color: #f7f7f7;
+    background-color: var(--bg-light);
 }
 
 .about-content {
@@ -462,7 +462,7 @@ body {
 
 .why-choose-section {
     padding: 100px 20px;
-    background: linear-gradient(135deg, #f7f7f7 0%, #fff 100%);
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
 }
 
 .why-choose-section .section-title {
@@ -590,7 +590,7 @@ body {
 
 .contact-section {
     padding: 100px 20px;
-    background-color: #f7f7f7;
+    background-color: var(--bg-light);
 }
 
 .contact-section .section-title {
@@ -644,7 +644,7 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
 }
 
 .form-group textarea {
@@ -662,12 +662,12 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(74, 144, 226, 0.3);
+    box-shadow: 0 5px 20px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 .submit-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(74, 144, 226, 0.4);
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--primary-color) 40%, transparent);
 }
 
 .contact-info {
@@ -921,7 +921,7 @@ body {
 /* FAQ Section */
 .faq-section {
     padding: 100px 20px;
-    background-color: #f7f7f7;
+    background-color: var(--bg-light);
 }
 
 .faq-section .section-title {
@@ -1010,7 +1010,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.4);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--primary-color) 40%, transparent);
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
@@ -1026,7 +1026,7 @@ body {
 
 .back-to-top:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.6);
+    box-shadow: 0 6px 25px color-mix(in srgb, var(--primary-color) 60%, transparent);
 }
 
 /* Animations */

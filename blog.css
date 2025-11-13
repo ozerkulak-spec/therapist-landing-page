@@ -4,7 +4,7 @@
 
 /* Blog Hero Section */
 .blog-hero {
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     padding: 100px 0 80px;
     text-align: center;
     color: white;
@@ -63,9 +63,9 @@
 }
 
 .filter-btn.active {
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    border-color: #4a90e2;
+    border-color: var(--primary-color);
 }
 
 /* Blog Section */
@@ -123,7 +123,7 @@
     position: absolute;
     top: 20px;
     left: 20px;
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
     padding: 8px 20px;
     border-radius: 50px;
@@ -163,7 +163,7 @@
 }
 
 .blog-card:hover .blog-card-title {
-    color: #4a90e2;
+    color: var(--primary-color);
 }
 
 .blog-card-excerpt {
@@ -218,7 +218,7 @@
 
 .newsletter-form button {
     padding: 18px 40px;
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
     border: none;
     border-radius: 50px;
@@ -231,12 +231,12 @@
 
 .newsletter-form button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+    box-shadow: 0 8px 25px color-mix(in srgb, var(--primary-color) 40%, transparent);
 }
 
 /* Blog Post Page Styles */
 .blog-post-hero {
-    background: linear-gradient(135deg, #4a90e2 0%, #6ac6b5 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     padding: 120px 0 80px;
     margin-top: 70px;
     color: white;
@@ -333,7 +333,7 @@
 }
 
 .blog-post-content blockquote {
-    border-left: 4px solid #4a90e2;
+    border-left: 4px solid var(--primary-color);
     padding: 20px 30px;
     margin: 30px 0;
     background: #f8f9fa;
