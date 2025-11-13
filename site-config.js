@@ -37,32 +37,32 @@ const SITE_CONFIG = {
     // Or use this palette generator: https://mycolor.space/
     
     colors: {
-        // Pastel Natural palette
-        primary: "#7CB9A3",         // Sage green (primary)
-        primaryDark: "#63A28C",     // Hover/darker sage
+        // Warm & friendly palette
+        primary: "#E9856B",         // Warm coral
+        primaryDark: "#D86E52",     // Darker coral for hover
 
-        secondary: "#F7C9A9",       // Pastel peach (secondary)
-        secondaryDark: "#E6B691",   // Hover/darker peach
+        secondary: "#F2CDA0",       // Warm sand/peach
+        secondaryDark: "#E7B880",   // Darker sand
 
         // Text colors
-        textDark: "#2B2D31",        // Deep neutral for good contrast
-        textMuted: "#6B7280",       // Muted gray for secondary text
-        textLight: "#ffffff",       // For light-on-dark areas
+        textDark: "#2B2D31",        // Deep neutral for contrast
+        textMuted: "#6B7280",       // Muted gray
+        textLight: "#ffffff",       // For dark backgrounds
 
         // Backgrounds
-        bgLight: "#FAFAF9",         // Warm off-white
+        bgLight: "#FFF8F3",         // Cozy off-white (warm)
         bgWhite: "#ffffff",
         bgDark: "#1F2937",          // Footer / dark areas
 
         // Semantic
-        success: "#84CC16",
-        error: "#EF4444",
-        warning: "#F59E0B",
-        info: "#38BDF8",
+        success: "#86EFAC",
+        error: "#FCA5A5",
+        warning: "#FBBF24",
+        info: "#60A5FA",
 
         // Gradients
-        gradientStart: "#7CB9A3",
-        gradientEnd: "#F7C9A9",
+        gradientStart: "#E9856B",
+        gradientEnd: "#F2CDA0",
     },
 
     // ════════════════════════════════════════════════════════════════
