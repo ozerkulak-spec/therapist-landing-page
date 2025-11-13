@@ -37,33 +37,32 @@ const SITE_CONFIG = {
     // Or use this palette generator: https://mycolor.space/
     
     colors: {
-        // Primary brand color (buttons, headers, accents)
-        primary: "#4a90e2",         // Blue
-        primaryDark: "#3a7bc8",     // Darker blue for hover
-        
-        // Secondary accent color (gradients, highlights)
-        secondary: "#6ac6b5",       // Teal
-        secondaryDark: "#5ab3a3",   // Darker teal
-        
+        // Pastel Natural palette
+        primary: "#7CB9A3",         // Sage green (primary)
+        primaryDark: "#63A28C",     // Hover/darker sage
+
+        secondary: "#F7C9A9",       // Pastel peach (secondary)
+        secondaryDark: "#E6B691",   // Hover/darker peach
+
         // Text colors
-        textDark: "#2c3e50",        // Main text color
-        textMuted: "#666666",       // Secondary text
-        textLight: "#ffffff",       // White text for dark backgrounds
-        
-        // Background colors
-        bgLight: "#f8f9fa",         // Light gray background
-        bgWhite: "#ffffff",         // White sections
-        bgDark: "#2c3e50",          // Dark footer
-        
-        // Semantic colors
-        success: "#28a745",         // Green for success messages
-        error: "#dc3545",           // Red for error messages
-        warning: "#ffc107",         // Yellow for warnings
-        info: "#17a2b8",            // Light blue for info
-        
-        // Gradient (for hero, stats, etc.)
-        gradientStart: "#4a90e2",   // Start color
-        gradientEnd: "#6ac6b5",     // End color
+        textDark: "#2B2D31",        // Deep neutral for good contrast
+        textMuted: "#6B7280",       // Muted gray for secondary text
+        textLight: "#ffffff",       // For light-on-dark areas
+
+        // Backgrounds
+        bgLight: "#FAFAF9",         // Warm off-white
+        bgWhite: "#ffffff",
+        bgDark: "#1F2937",          // Footer / dark areas
+
+        // Semantic
+        success: "#84CC16",
+        error: "#EF4444",
+        warning: "#F59E0B",
+        info: "#38BDF8",
+
+        // Gradients
+        gradientStart: "#7CB9A3",
+        gradientEnd: "#F7C9A9",
     },
 
     // ════════════════════════════════════════════════════════════════
