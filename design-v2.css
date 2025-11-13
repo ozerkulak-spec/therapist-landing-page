@@ -1,0 +1,123 @@
+/* =============================================================
+   Modern Design V2 – Clean, Airy, Premium aesthetic
+   - Glassy navbar, elevated cards, generous spacing, smooth hovers
+   - Uses existing CSS variables from site-config.js for colors
+   ============================================================= */
+
+/* Global rhythm & typography */
+html { scroll-behavior: smooth; }
+body { letter-spacing: 0.1px; -webkit-font-smoothing: antialiased; }
+
+.container { max-width: 1120px; }
+
+/* Navbar - glass + border */
+.navbar {
+  background: color-mix(in srgb, var(--bg-white) 80%, transparent);
+  backdrop-filter: saturate(200%) blur(10px);
+  border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 12%, #000 0%);
+}
+
+.nav-menu a {
+  color: color-mix(in srgb, var(--text-dark) 92%, #000 0%);
+  position: relative;
+}
+.nav-menu a::after {
+  content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transition: width .25s ease;
+}
+.nav-menu a:hover::after { width: 100%; }
+
+.nav-cta {
+  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, #000 0%);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--primary-color) 18%, transparent);
+}
+.nav-cta:hover { box-shadow: 0 10px 26px color-mix(in srgb, var(--primary-color) 28%, transparent); }
+
+/* Hero */
+.hero-section {
+  padding: 120px 0 90px;
+  background: radial-gradient(1200px 600px at 80% -50%, color-mix(in srgb, var(--secondary-color) 35%, #fff) 0%, transparent 70%),
+              linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 90%, #fff) 0%, color-mix(in srgb, var(--secondary-color) 85%, #fff) 100%);
+}
+.hero-content { gap: 72px; }
+.hero-title { font-size: 3.25rem; line-height: 1.1; }
+.hero-subtitle { font-size: 1.1rem; opacity: .95; }
+
+.cta-button.primary { box-shadow: 0 10px 24px color-mix(in srgb, var(--primary-color) 30%, transparent); }
+.cta-button.secondary { background: transparent; border: 1px solid color-mix(in srgb, var(--text-light) 25%, transparent); }
+.cta-button.secondary:hover { background: color-mix(in srgb, var(--text-light) 8%, transparent); }
+
+/* Service cards – elevated, airy */
+.services-section { padding-top: 80px; }
+.service-card {
+  background: color-mix(in srgb, var(--bg-white) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, #000 0%);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.10);
+}
+.service-icon svg { filter: drop-shadow(0 6px 12px color-mix(in srgb, var(--primary-color) 22%, transparent)); }
+
+/* Why choose – steps look */
+.why-choose .reason-card {
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--secondary-color) 15%, #000 0%);
+  background: color-mix(in srgb, var(--bg-white) 90%, transparent);
+  transition: transform .25s ease;
+}
+.why-choose .reason-card:hover { transform: translateY(-3px); }
+
+/* Testimonials */
+.testimonial-card {
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, #000 0%);
+  background: color-mix(in srgb, var(--bg-white) 94%, transparent);
+}
+
+/* FAQ */
+.faq-item {
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, #000 0%);
+  background: color-mix(in srgb, var(--bg-white) 96%, transparent);
+}
+
+/* Contact/CTA */
+.contact-section .contact-card, .newsletter-section .newsletter-content {
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, #000 0%);
+  background: color-mix(in srgb, var(--bg-white) 96%, transparent);
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+}
+
+/* Footer */
+.footer { background: color-mix(in srgb, var(--bg-dark) 96%, #000 0%); }
+.footer .footer-col h3 { color: #e7ecef; }
+
+/* New: How it works section */
+.hiw-section { padding: 80px 0; background: var(--bg-light); }
+.hiw-header { text-align: center; margin-bottom: 36px; }
+.hiw-grid {
+  display: grid; gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.hiw-card {
+  background: var(--bg-white);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, #000 0%);
+  border-radius: 16px; padding: 22px; height: 100%;
+  box-shadow: 0 8px 24px rgba(0,0,0,.05);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.hiw-card:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(0,0,0,.08); }
+.hiw-number { font-weight: 700; color: var(--secondary-color); font-size: .95rem; letter-spacing: .12em; }
+.hiw-title { font-size: 1.15rem; margin: 6px 0 8px; color: var(--text-dark); }
+.hiw-text { color: var(--text-muted); font-size: .98rem; }
+
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; gap: 36px; }
+  .hiw-grid { grid-template-columns: 1fr; }
+}
