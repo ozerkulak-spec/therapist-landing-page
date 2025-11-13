@@ -3,21 +3,21 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 :root {
-    /* Default colors (will be overridden by site-config.js) */
-    --primary-color: var(--primary-color);
+    /* Default colors (will be overridden by site-config.js via CSS variables) */
+    --primary-color: #4a90e2; /* default; will be overridden by admin previews */
     --primary-dark: #3a7bc8;
-    --secondary-color: var(--secondary-color);
+    --secondary-color: #6ac6b5;
     --secondary-dark: #5ab3a3;
-    --text-dark: var(--text-dark);
-    --text-muted: var(--text-muted)666;
+    --text-dark: #2c3e50;
+    --text-muted: #666666;
     --text-light: #ffffff;
-    --bg-light: var(--bg-light);
+    --bg-light: #f8f9fa;
     --bg-white: #ffffff;
-    --bg-dark: var(--text-dark);
+    --bg-dark: #2c3e50;
     --success-color: #28a745;
     --error-color: #dc3545;
-    --gradient-start: var(--primary-color);
-    --gradient-end: var(--secondary-color);
+    --gradient-start: #4a90e2;
+    --gradient-end: #6ac6b5;
 }
 
 /* ═══════════════════════════════════════════════════════════════════

@@ -185,6 +185,13 @@ const themePresets = {
         secondary: '#6ac6b5',
         secondaryDark: '#5ab3a3'
     },
+    pastel: {
+        // Pastel Natural palette
+        primary: '#7FB2A8',      // Sage green
+        primaryDark: '#5F8F85',  // Deeper sage
+        secondary: '#EADBC8',    // Sand/linen
+        secondaryDark: '#D7C1A7' // Deeper sand
+    },
     ocean: {
         primary: '#0077b6',
         primaryDark: '#023e8a',
@@ -226,9 +233,18 @@ function initThemePresets() {
             const colors = themePresets[theme];
             
             applyThemeColors(colors);
+            try { localStorage.setItem('selectedTheme', theme); } catch (e) {}
             showToast(`${btn.textContent.trim()} theme applied!`, 'success');
         });
     });
+
+    // Auto-apply previously selected theme if available
+    try {
+        const savedTheme = localStorage.getItem('selectedTheme');
+        if (savedTheme && themePresets[savedTheme]) {
+            applyThemeColors(themePresets[savedTheme]);
+        }
+    } catch (e) {}
 }
 
 function applyThemeColors(colors) {
