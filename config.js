@@ -9,8 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    const formattedPhone = `+${config.countryCode}${config.phoneNumber}`;
-    const whatsappLink = `https://wa.me/${config.countryCode}${config.phoneNumber}`;
+    // Support new structure (SITE_CONFIG.contact) with fallback to legacy fields
+    const contact = config.contact || {};
+    const countryCode = contact.countryCode || config.countryCode || '';
+    const phone = contact.phone || config.phoneNumber || '';
+    const email = contact.email || config.email || '';
+    const location = contact.location || config.location || '';
+
+    const formattedPhone = countryCode && phone ? `+${countryCode}${phone}` : '';
+    const whatsappLink = countryCode && phone ? `https://wa.me/${countryCode}${phone}` : '';
     const telLink = `tel:${formattedPhone}`;
     
     // Update all WhatsApp links
@@ -34,17 +41,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update email displays
     const emailDisplays = document.querySelectorAll('.email-display');
     emailDisplays.forEach(el => {
-        el.textContent = config.email;
-        if (el.tagName === 'A') {
-            el.href = `mailto:${config.email}`;
+        if (email) {
+            el.textContent = email;
+            if (el.tagName === 'A') {
+                el.href = `mailto:${email}`;
+            }
         }
     });
     
     // Update location displays
     const locationDisplays = document.querySelectorAll('.location-display');
     locationDisplays.forEach(el => {
-        el.textContent = config.location;
+        if (location) {
+            el.textContent = location;
+        }
     });
     
-    console.log('Site configuration applied:', config);
+    console.log('Site configuration applied:', {
+        phone: formattedPhone,
+        email,
+        location
+    });
 });

@@ -80,20 +80,7 @@
     }
     </script>
     
-    <!-- Configuration: Easily customize phone number and country code -->
-    <script>
-        const SITE_CONFIG = {
-            countryCode: '1',  // Change this: 1=USA, 44=UK, 90=Turkey, 49=Germany, etc.
-            phoneNumber: '5551234567',  // Phone without country code
-            email: 'dr.mitchell@example.com',
-            location: 'Los Angeles, CA',
-            doctorName: 'Dr. Sarah Mitchell'
-        };
-        
-        // Auto-format phone for display and links
-        const FORMATTED_PHONE = `+${SITE_CONFIG.countryCode}${SITE_CONFIG.phoneNumber}`;
-        const WHATSAPP_LINK = `https://wa.me/${SITE_CONFIG.countryCode}${SITE_CONFIG.phoneNumber}`;
-    </script>
+    <!-- Configuration is centralized in site-config.js; no inline overrides here -->
 </head>
 <body>
 
