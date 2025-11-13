@@ -16,14 +16,14 @@
     <meta property="og:title" content="Professional Therapy Services | Dr. Sarah Mitchell">
     <meta property="og:description" content="Licensed clinical psychologist offering individual therapy, couples therapy, and online sessions. Book your appointment today.">
     <meta property="og:url" content="https://ozerkulak-spec.github.io/therapist-landing-page/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=630&fit=crop">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&h=630&fit=crop&q=85">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Professional Therapy Services | Dr. Sarah Mitchell">
     <meta name="twitter:description" content="Licensed clinical psychologist offering individual therapy, couples therapy, and online sessions.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=630&fit=crop">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&h=630&fit=crop&q=85">
     
     <title>Professional Therapy Services | Dr. Sarah Mitchell - Licensed Clinical Psychologist</title>
     
@@ -636,6 +636,25 @@
     <!-- Main Script -->
     <script defer>
         document.addEventListener('DOMContentLoaded', () => {
+            // Apply dynamic images from SITE_CONFIG if provided
+            try {
+                if (window.SITE_CONFIG && SITE_CONFIG.images) {
+                    const heroSrc = SITE_CONFIG.images.hero;
+                    const aboutSrc = SITE_CONFIG.images.about;
+                    if (heroSrc) {
+                        const heroImg = document.querySelector('.hero-image img');
+                        const heroSource = document.querySelector('.hero-image source');
+                        if (heroSource) heroSource.srcset = `${heroSrc}&fm=webp`;
+                        if (heroImg) heroImg.src = heroSrc;
+                    }
+                    if (aboutSrc) {
+                        const aboutImg = document.querySelector('.about-image img');
+                        const aboutSource = document.querySelector('.about-image source');
+                        if (aboutSource) aboutSource.srcset = `${aboutSrc}&fm=webp`;
+                        if (aboutImg) aboutImg.src = aboutSrc;
+                    }
+                }
+            } catch (e) {}
             // Mobile Menu Toggle
             const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
             const navMenu = document.querySelector('.nav-menu');

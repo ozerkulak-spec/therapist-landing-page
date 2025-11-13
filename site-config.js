@@ -73,11 +73,11 @@ const SITE_CONFIG = {
     // Recommended sizes included in comments
     
     images: {
-        // Hero section (1920x1080px recommended)
-        hero: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1920&h=1080&fit=crop",
+    // Hero section (1920x1080px recommended) - soft pastel workspace
+    hero: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1920&h=1080&fit=crop&q=85",
         
-        // About section (800x600px recommended)
-        about: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=800&h=600&fit=crop",
+    // About section (800x600px recommended) - warm, professional portrait vibe
+    about: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=600&fit=crop&q=85",
         
         // Service cards (400x300px recommended each)
         services: {
